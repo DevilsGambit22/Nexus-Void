@@ -197,7 +197,7 @@ input{
   min-width:0;
 }
 
-/* SMALL LOGO - NO TEXT */
+/* SMALL LOGO */
 .mini-ring{
   position:relative;
 
@@ -507,7 +507,6 @@ input{
     rgba(255,255,255,.08);
 }
 
-/* TEXT STAYS UPRIGHT WHILE RING ROTATES */
 .ring-title{
   position:absolute;
   inset:0;
@@ -620,6 +619,19 @@ input{
 
   box-shadow:
     0 12px 28px rgba(0,0,0,.2);
+
+  transition:.2s ease;
+}
+
+.stat:hover{
+  transform:translateY(-3px);
+
+  border-color:
+    rgba(181,85,255,.36);
+
+  box-shadow:
+    0 14px 34px rgba(0,0,0,.28),
+    0 0 20px rgba(143,60,255,.12);
 }
 
 .stat b{
@@ -637,6 +649,20 @@ input{
   letter-spacing:.12em;
 
   font-weight:900;
+}
+
+.local-date{
+  display:block;
+
+  margin-top:5px;
+
+  color:#8e829e;
+
+  font-size:9px;
+
+  font-weight:700;
+
+  line-height:1.35;
 }
 
 /* SECTIONS */
@@ -856,6 +882,50 @@ input{
 
 .user-text small{
   display:block;
+}
+
+.member-rating{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  justify-content:center;
+
+  flex-shrink:0;
+
+  padding:
+    6px 9px;
+
+  border-radius:10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,122,24,.10),
+      rgba(143,60,255,.13)
+    );
+
+  border:
+    1px solid rgba(255,255,255,.07);
+}
+
+.member-rating b{
+  font-size:14px;
+  line-height:1;
+  color:#fff;
+}
+
+.member-rating span{
+  margin-top:3px;
+
+  font-size:8px;
+
+  color:var(--muted);
+
+  text-transform:uppercase;
+
+  letter-spacing:.09em;
+
+  font-weight:900;
 }
 
 .role-tag{
@@ -1090,6 +1160,10 @@ input{
   .toplinks{
     display:none;
   }
+
+  .member-rating{
+    padding:6px 7px;
+  }
 }
 </style>
 </head>
@@ -1230,15 +1304,23 @@ input{
   <!-- LIVE STATS -->
   <section class="stats">
 
+    <!-- BROWSER / DEVICE CLOCK -->
     <div class="stat">
 
-      <b id="memberCount">
-        —
+      <b id="localClock">
+        --:--:--
       </b>
 
       <span>
-        Members
+        Local Time
       </span>
+
+      <small
+        class="local-date"
+        id="localDate"
+      >
+        Loading date…
+      </small>
 
     </div>
 
@@ -1514,7 +1596,9 @@ const $ =
     document.querySelector(selector);
 
 
-/* SAFE HTML TEXT */
+/* =========================================================
+   SAFE HTML TEXT
+========================================================= */
 function safeText(value){
 
   return String(value ?? "")
@@ -1532,7 +1616,9 @@ function safeText(value){
 }
 
 
-/* API REQUEST */
+/* =========================================================
+   API REQUEST
+========================================================= */
 async function getJSON(url){
 
   const response =
@@ -1558,7 +1644,66 @@ async function getJSON(url){
 }
 
 
-/* PLAYER AVATAR */
+/* =========================================================
+   BROWSER / DEVICE CLOCK
+========================================================= */
+function updateLocalClock(){
+
+  const now =
+    new Date();
+
+  const clock =
+    $("#localClock");
+
+  const date =
+    $("#localDate");
+
+
+  if(clock){
+
+    clock.textContent =
+      now.toLocaleTimeString(
+        [],
+        {
+          hour:"numeric",
+          minute:"2-digit",
+          second:"2-digit",
+          hour12:true
+        }
+      );
+
+  }
+
+
+  if(date){
+
+    date.textContent =
+      now.toLocaleDateString(
+        [],
+        {
+          weekday:"short",
+          month:"short",
+          day:"numeric",
+          year:"numeric"
+        }
+      );
+
+  }
+
+}
+
+
+updateLocalClock();
+
+setInterval(
+  updateLocalClock,
+  1000
+);
+
+
+/* =========================================================
+   PLAYER AVATAR
+========================================================= */
 function avatarFor(player){
 
   if(player?.avatar){
@@ -1580,33 +1725,86 @@ function avatarFor(player){
 }
 
 
-/* CLUB MEMBER COUNT */
-async function loadMemberCount(){
+/* =========================================================
+   HIGHEST CURRENT CHESS.COM RATING
+========================================================= */
+function getHighestRating(stats){
 
-  try{
+  const ratingPools = [
 
-    const club =
-      await getJSON(
-        `${API}/club/${CLUB}`
-      );
+    {
+      key:"chess_daily",
+      label:"Daily"
+    },
 
-    $("#memberCount").textContent =
-      Number(
-        club.members || 0
-      ).toLocaleString();
+    {
+      key:"chess_rapid",
+      label:"Rapid"
+    },
+
+    {
+      key:"chess_blitz",
+      label:"Blitz"
+    },
+
+    {
+      key:"chess_bullet",
+      label:"Bullet"
+    },
+
+    {
+      key:"chess960_daily",
+      label:"Chess960"
+    }
+
+  ];
+
+
+  let highest = null;
+
+
+  for(
+    const pool
+    of ratingPools
+  ){
+
+    const rating =
+      stats?.[pool.key]?.last?.rating;
+
+
+    if(
+      typeof rating === "number" &&
+      Number.isFinite(rating)
+    ){
+
+      if(
+        !highest ||
+        rating > highest.rating
+      ){
+
+        highest = {
+
+          rating,
+
+          label:pool.label
+
+        };
+
+      }
+
+    }
 
   }
-  catch(error){
 
-    $("#memberCount").textContent =
-      "—";
 
-  }
+  return highest;
 
 }
 
 
-/* CLUB MEMBERS */
+/* =========================================================
+   CLUB MEMBERS + HIGHEST CURRENT RATING
+========================================================= */
 async function loadMembers(){
 
   try{
@@ -1615,6 +1813,7 @@ async function loadMembers(){
       await getJSON(
         `${API}/club/${CLUB}/members`
       );
+
 
     const allMembers = [
 
@@ -1626,57 +1825,108 @@ async function loadMembers(){
 
     ];
 
+
     const seen =
       new Set();
+
 
     const uniqueMembers =
       allMembers.filter(
         member => {
 
+          const username =
+            member?.username;
+
           if(
-            !member?.username ||
-            seen.has(member.username)
+            !username
           ){
 
             return false;
 
           }
 
-          seen.add(
-            member.username
-          );
+
+          const normalized =
+            username.toLowerCase();
+
+
+          if(
+            seen.has(normalized)
+          ){
+
+            return false;
+
+          }
+
+
+          seen.add(normalized);
 
           return true;
 
         }
       );
 
+
     $("#newestCount").textContent =
       uniqueMembers.length
         .toLocaleString();
 
+
     const displayedMembers =
       uniqueMembers.slice(0,6);
 
-    const profiles =
+
+    const memberData =
       await Promise.all(
 
         displayedMembers.map(
-          member =>
 
-            getJSON(
-              `${API}/player/${member.username}`
-            )
+          async member => {
 
-            .catch(
-              () => member
-            )
+            const username =
+              member.username;
+
+
+            const [
+              profile,
+              stats
+            ] =
+              await Promise.all([
+
+                getJSON(
+                  `${API}/player/${encodeURIComponent(username)}`
+                )
+                .catch(
+                  () => member
+                ),
+
+                getJSON(
+                  `${API}/player/${encodeURIComponent(username)}/stats`
+                )
+                .catch(
+                  () => null
+                )
+
+              ]);
+
+
+            return {
+
+              profile,
+
+              highest:
+                getHighestRating(stats)
+
+            };
+
+          }
 
         )
 
       );
 
-    if(!profiles.length){
+
+    if(!memberData.length){
 
       $("#newMembers").innerHTML =
         `
@@ -1691,12 +1941,36 @@ async function loadMembers(){
 
     }
 
+
     $("#newMembers").innerHTML =
-      profiles.map(
-        player => {
+      memberData.map(
+        member => {
+
+          const player =
+            member.profile;
+
 
           const username =
             player.username || "";
+
+
+          const rating =
+            member.highest;
+
+
+          const ratingValue =
+            rating
+              ? Number(
+                  rating.rating
+                ).toLocaleString()
+              : "—";
+
+
+          const ratingPool =
+            rating
+              ? rating.label
+              : "Unrated";
+
 
           return `
           <a
@@ -1727,9 +2001,17 @@ async function loadMembers(){
 
             </div>
 
-            <span>
-              ↗
-            </span>
+            <div class="member-rating">
+
+              <b>
+                ${safeText(ratingValue)}
+              </b>
+
+              <span>
+                ${safeText(ratingPool)}
+              </span>
+
+            </div>
 
           </a>
           `;
@@ -1739,6 +2021,10 @@ async function loadMembers(){
 
   }
   catch(error){
+
+    $("#newestCount").textContent =
+      "—";
+
 
     $("#newMembers").innerHTML =
       `
@@ -1756,7 +2042,9 @@ async function loadMembers(){
 }
 
 
-/* LEADERSHIP */
+/* =========================================================
+   LEADERSHIP
+========================================================= */
 async function loadLeadership(){
 
   const leaders = [
@@ -1778,6 +2066,7 @@ async function loadLeadership(){
     }
 
   ];
+
 
   const profiles =
     await Promise.all(
@@ -1808,6 +2097,7 @@ async function loadLeadership(){
       )
 
     );
+
 
   $("#leadership").innerHTML =
     profiles.map(
@@ -1861,7 +2151,9 @@ async function loadLeadership(){
 }
 
 
-/* LOAD DAILY CLUB MATCHES */
+/* =========================================================
+   LOAD DAILY CLUB MATCHES
+========================================================= */
 async function loadMatches(){
 
   try{
@@ -1871,7 +2163,7 @@ async function loadMatches(){
         `${API}/club/${CLUB}/matches`
       );
 
-    /* MCA DETECTION */
+
     resolveNextMCA(data)
       .catch(
         () => {
@@ -1896,8 +2188,10 @@ async function loadMatches(){
     const registered =
       data.registered || [];
 
+
     const inProgress =
       data.in_progress || [];
+
 
     const activeMatches = [
 
@@ -1906,6 +2200,7 @@ async function loadMatches(){
       ...registered
 
     ];
+
 
     $("#dailyCount").textContent =
       activeMatches.length;
@@ -1998,7 +2293,9 @@ async function loadMatches(){
 }
 
 
-/* MCA COUNTDOWN */
+/* =========================================================
+   MCA COUNTDOWN
+========================================================= */
 let mcaStartTime = null;
 
 let mcaEvent = null;
@@ -2215,7 +2512,6 @@ async function resolveNextMCA(
       );
 
 
-  /* NEXT UPCOMING MCA */
   if(upcoming.length){
 
     mcaEvent =
@@ -2261,7 +2557,6 @@ async function resolveNextMCA(
   }
 
 
-  /* MCA ALREADY STARTED */
   const active =
     detailedMatches
 
@@ -2327,7 +2622,6 @@ async function resolveNextMCA(
   }
 
 
-  /* NOTHING SCHEDULED */
   mcaStartTime =
     null;
 
@@ -2490,7 +2784,9 @@ setInterval(
 );
 
 
-/* BLACK HOLE PARTICLES */
+/* =========================================================
+   BLACK HOLE PARTICLES
+========================================================= */
 const canvas =
   $("#voidCanvas");
 
@@ -2683,7 +2979,6 @@ function animateVoid(){
       );
 
 
-    /* FALL TOWARD EVENT HORIZON */
     const gravity =
       Math.min(
         .46,
@@ -2692,7 +2987,6 @@ function animateVoid(){
       );
 
 
-    /* SLIGHT ORBITAL MOVEMENT */
     const tangentX =
       -dy /
       distance;
@@ -2719,7 +3013,6 @@ function animateVoid(){
       .16;
 
 
-    /* RESET ONCE SWALLOWED */
     if(distance < 78){
 
       resetParticle(
@@ -2778,14 +3071,16 @@ function animateVoid(){
 animateVoid();
 
 
-/* INITIAL LOAD */
-loadMemberCount();
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
 
 loadMembers();
 
 loadLeadership();
 
 loadMatches();
+
 </script>
 
 </body>
