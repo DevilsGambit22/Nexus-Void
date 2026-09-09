@@ -14,37 +14,20 @@
 
 <style>
 
-/* =========================================================
-   NEXUS VOID — TRUE SIDEBAR
-========================================================= */
-
 :root{
   --sidebar-width:380px;
-
   --bg:#07050c;
   --panel:rgba(19,12,30,.86);
   --panel2:rgba(12,9,21,.92);
-
   --text:#f7f3ff;
   --muted:#bcb0cb;
-
   --orange:#ff7a18;
   --orange2:#ffb02e;
-
   --violet:#8f3cff;
   --violet2:#c05cff;
-
   --line:rgba(184,102,255,.26);
-
-  --shadow:
-    0 16px 42px
-    rgba(0,0,0,.40);
+  --shadow:0 16px 42px rgba(0,0,0,.40);
 }
-
-
-/* =========================================================
-   GLOBAL
-========================================================= */
 
 *{
   box-sizing:border-box;
@@ -56,9 +39,7 @@ body{
   width:100%;
   margin:0;
   padding:0;
-
   background:#050308;
-
   overflow:hidden;
 }
 
@@ -71,7 +52,6 @@ body{
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
-
   color:var(--text);
 }
 
@@ -80,50 +60,41 @@ a{
   text-decoration:none;
 }
 
-
 /* =========================================================
-   TRUE SIDEBAR SHELL
+   SIDEBAR SHELL
 ========================================================= */
 
 .sidebar-shell{
   position:relative;
-
   width:min(100%,var(--sidebar-width));
   max-width:var(--sidebar-width);
-
   height:100vh;
-
   margin:0 auto;
 
   overflow-x:hidden;
   overflow-y:auto;
 
   scrollbar-width:thin;
-
   scrollbar-color:
     rgba(181,83,255,.88)
     rgba(8,5,14,.42);
 
   background:
-
     radial-gradient(
       circle at 55% 16%,
       rgba(143,60,255,.18),
       transparent 27%
     ),
-
     radial-gradient(
       circle at 18% 50%,
       rgba(255,122,24,.08),
       transparent 24%
     ),
-
     radial-gradient(
       circle at 72% 73%,
       rgba(143,60,255,.11),
       transparent 30%
     ),
-
     linear-gradient(
       180deg,
       #050308,
@@ -132,16 +103,12 @@ a{
     );
 }
 
-
-/* THIN SCROLLBAR ATTACHED TO SIDEBAR */
-
 .sidebar-shell::-webkit-scrollbar{
   width:5px;
 }
 
 .sidebar-shell::-webkit-scrollbar-track{
-  background:
-    rgba(4,2,8,.48);
+  background:rgba(4,2,8,.48);
 }
 
 .sidebar-shell::-webkit-scrollbar-thumb{
@@ -152,7 +119,6 @@ a{
       #bd5bff,
       #7130df
     );
-
   border-radius:999px;
 }
 
@@ -165,18 +131,14 @@ a{
     );
 }
 
-
 /* =========================================================
-   VOID BACKGROUND
+   BACKGROUND EFFECTS
 ========================================================= */
 
 .sidebar-shell::before{
   content:"";
-
   position:absolute;
-
   z-index:0;
-
   left:50%;
   top:28%;
 
@@ -202,27 +164,16 @@ a{
     );
 
   filter:blur(20px);
-
   opacity:.72;
-
   pointer-events:none;
-
-  animation:
-    voidDrift
-    24s
-    linear
-    infinite;
+  animation:voidDrift 24s linear infinite;
 }
 
 .sidebar-shell::after{
   content:"";
-
   position:absolute;
-
   inset:0;
-
   z-index:0;
-
   pointer-events:none;
 
   background:
@@ -236,16 +187,11 @@ a{
 
 #voidCanvas{
   position:fixed;
-
   inset:0;
-
   z-index:0;
-
   pointer-events:none;
-
   opacity:.58;
 }
-
 
 /* =========================================================
    WRAPPER
@@ -253,51 +199,34 @@ a{
 
 .wrap{
   position:relative;
-
   z-index:2;
-
   width:100%;
-
-  padding:
-    8px
-    8px
-    28px;
+  padding:8px 8px 28px;
 }
 
-
 /* =========================================================
-   TOP BAR
+   TOPBAR
 ========================================================= */
 
 .topbar{
   position:sticky;
-
   top:5px;
-
   z-index:20;
 
   width:100%;
 
   display:flex;
-
   align-items:center;
 
-  padding:
-    9px
-    10px;
+  padding:9px 10px;
 
-  border:
-    1px solid var(--line);
-
+  border:1px solid var(--line);
   border-radius:15px;
 
-  background:
-    rgba(8,5,14,.90);
+  background:rgba(8,5,14,.90);
 
   backdrop-filter:blur(13px);
-
-  -webkit-backdrop-filter:
-    blur(13px);
+  -webkit-backdrop-filter:blur(13px);
 
   box-shadow:
     0 10px 28px
@@ -306,20 +235,15 @@ a{
 
 .brand{
   display:flex;
-
   align-items:center;
-
   gap:8px;
 
   width:100%;
-
   overflow:hidden;
 }
 
 .mini-ring{
-  flex:
-    0 0
-    31px;
+  flex:0 0 31px;
 
   width:31px;
   height:31px;
@@ -342,46 +266,31 @@ a{
     0 0 16px
     rgba(162,71,255,.55);
 
-  animation:
-    spin
-    8s
-    linear
-    infinite;
+  animation:spin 8s linear infinite;
 }
 
 .mini-ring::after{
   content:"";
-
   display:block;
-
   width:100%;
   height:100%;
-
   border-radius:50%;
-
   background:#08050e;
 }
 
 .brand strong{
   display:block;
-
   width:100%;
 
   overflow:hidden;
-
   white-space:nowrap;
-
   text-overflow:ellipsis;
 
   font-size:12px;
-
   font-weight:900;
-
   letter-spacing:.08em;
-
   text-transform:uppercase;
 }
-
 
 /* =========================================================
    HERO
@@ -402,25 +311,21 @@ a{
   overflow:hidden;
 
   border:
-    1px solid
-    rgba(255,255,255,.09);
+    1px solid rgba(255,255,255,.09);
 
   border-radius:19px;
 
   background:
-
     linear-gradient(
       135deg,
       rgba(255,122,24,.06),
       transparent 35%
     ),
-
     linear-gradient(
       315deg,
       rgba(143,60,255,.13),
       transparent 48%
     ),
-
     rgba(10,6,16,.88);
 
   box-shadow:var(--shadow);
@@ -428,9 +333,7 @@ a{
 
 .hero::before{
   content:"";
-
   position:absolute;
-
   inset:-70%;
 
   background:
@@ -443,56 +346,40 @@ a{
       transparent
     );
 
-  animation:
-    spin
-    24s
-    linear
-    infinite;
+  animation:spin 24s linear infinite;
 }
 
 .hero-copy{
   position:relative;
-
   z-index:2;
 }
 
 .eyebrow{
   display:inline-flex;
-
   align-items:center;
-
   gap:6px;
 
   max-width:100%;
 
-  padding:
-    6px
-    8px;
+  padding:6px 8px;
 
   border:
-    1px solid
-    rgba(255,255,255,.08);
+    1px solid rgba(255,255,255,.08);
 
   border-radius:999px;
 
-  background:
-    rgba(255,255,255,.05);
+  background:rgba(255,255,255,.05);
 
   color:#d9d0e3;
 
   font-size:8px;
-
   font-weight:900;
-
   letter-spacing:.08em;
-
   text-transform:uppercase;
 }
 
 .live-dot{
-  flex:
-    0 0
-    7px;
+  flex:0 0 7px;
 
   width:7px;
   height:7px;
@@ -502,17 +389,13 @@ a{
   background:#8cff69;
 
   box-shadow:
-    0 0 9px
-    #8cff69;
+    0 0 9px #8cff69;
 }
 
 .hero h1{
   width:100%;
 
-  margin:
-    13px
-    0
-    8px;
+  margin:13px 0 8px;
 
   font-size:
     clamp(
@@ -522,7 +405,6 @@ a{
     );
 
   line-height:.94;
-
   letter-spacing:-.045em;
 }
 
@@ -537,34 +419,25 @@ a{
     );
 
   -webkit-background-clip:text;
-
   background-clip:text;
-
   color:transparent;
 }
 
 .hero p{
   width:100%;
-
   margin:0;
 
   color:var(--muted);
 
   font-size:11px;
-
   line-height:1.55;
 }
-
-
-/* HERO BUTTONS */
 
 .hero-actions{
   width:100%;
 
   display:grid;
-
   grid-template-columns:1fr;
-
   gap:6px;
 
   margin-top:13px;
@@ -572,26 +445,20 @@ a{
 
 .btn{
   display:block;
-
   width:100%;
 
-  padding:
-    8px
-    10px;
+  padding:8px 10px;
 
   border:
-    1px solid
-    rgba(255,255,255,.10);
+    1px solid rgba(255,255,255,.10);
 
   border-radius:10px;
 
-  background:
-    rgba(255,255,255,.055);
+  background:rgba(255,255,255,.055);
 
   color:#fff;
 
   font-size:9px;
-
   font-weight:900;
 
   text-align:center;
@@ -600,8 +467,7 @@ a{
 }
 
 .btn:hover{
-  transform:
-    translateY(-2px);
+  transform:translateY(-2px);
 
   border-color:
     rgba(192,92,255,.56);
@@ -614,26 +480,21 @@ a{
     rgba(143,60,255,.18);
 }
 
-
 /* =========================================================
-   UPLOADED NEXUS VOID HERO GIF
+   HERO GIF
 ========================================================= */
 
 .ring-stage{
   position:relative;
-
   z-index:2;
 
   width:100%;
-
   height:180px;
 
   margin-top:6px;
 
   display:flex;
-
   align-items:center;
-
   justify-content:center;
 
   overflow:visible;
@@ -656,12 +517,10 @@ a{
       0 0 10px
       rgba(255,122,24,.35)
     )
-
     drop-shadow(
       0 0 20px
       rgba(143,60,255,.45)
     )
-
     drop-shadow(
       0 0 32px
       rgba(143,60,255,.20)
@@ -679,26 +538,22 @@ a{
 }
 
 .hero-gif:hover{
-  transform:
-    scale(1.07);
+  transform:scale(1.07);
 
   filter:
     drop-shadow(
       0 0 14px
       rgba(255,122,24,.55)
     )
-
     drop-shadow(
       0 0 28px
       rgba(143,60,255,.70)
     )
-
     drop-shadow(
       0 0 42px
       rgba(143,60,255,.30)
     );
 }
-
 
 /* =========================================================
    STATS
@@ -708,9 +563,7 @@ a{
   width:100%;
 
   display:grid;
-
   grid-template-columns:1fr;
-
   gap:6px;
 
   margin-top:8px;
@@ -719,15 +572,12 @@ a{
 .stat{
   width:100%;
 
-  padding:
-    10px
-    9px;
+  padding:10px 9px;
 
   overflow:hidden;
 
   border:
-    1px solid
-    rgba(255,255,255,.08);
+    1px solid rgba(255,255,255,.08);
 
   border-radius:13px;
 
@@ -744,8 +594,7 @@ a{
 }
 
 .stat:hover{
-  transform:
-    translateY(-2px);
+  transform:translateY(-2px);
 
   border-color:
     rgba(181,85,255,.36);
@@ -757,17 +606,13 @@ a{
 
 .stat b{
   display:block;
-
   width:100%;
 
   font-size:17px;
-
   line-height:1.05;
 
   white-space:nowrap;
-
   overflow:hidden;
-
   text-overflow:ellipsis;
 }
 
@@ -779,11 +624,8 @@ a{
   color:var(--muted);
 
   font-size:7px;
-
   font-weight:900;
-
   letter-spacing:.09em;
-
   text-transform:uppercase;
 }
 
@@ -795,10 +637,8 @@ a{
   color:#84788f;
 
   font-size:7px;
-
   font-weight:700;
 }
-
 
 /* =========================================================
    SECTIONS
@@ -808,14 +648,11 @@ a{
   width:100%;
 
   display:grid;
-
   grid-template-columns:1fr;
-
   gap:9px;
 
   margin-top:9px;
 }
-
 
 /* =========================================================
    CARDS
@@ -826,15 +663,12 @@ a{
 
   width:100%;
 
-  padding:
-    13px
-    11px;
+  padding:13px 11px;
 
   overflow:hidden;
 
   border:
-    1px solid
-    rgba(255,255,255,.08);
+    1px solid rgba(255,255,255,.08);
 
   border-radius:16px;
 
@@ -853,8 +687,7 @@ a{
 }
 
 .card:hover{
-  transform:
-    translateY(-2px);
+  transform:translateY(-2px);
 
   border-color:
     rgba(181,85,255,.38);
@@ -887,18 +720,13 @@ a{
 
 .card h2{
   position:relative;
-
   z-index:2;
 
   width:100%;
 
-  margin:
-    0
-    0
-    9px;
+  margin:0 0 9px;
 
   font-size:15px;
-
   line-height:1.25;
 }
 
@@ -906,10 +734,8 @@ a{
   color:var(--muted);
 
   font-size:10px;
-
   line-height:1.45;
 }
-
 
 /* =========================================================
    COUNTDOWN
@@ -917,7 +743,6 @@ a{
 
 .countdown{
   position:relative;
-
   z-index:2;
 
   width:100%;
@@ -932,37 +757,29 @@ a{
 
   gap:4px;
 
-  margin:
-    11px
-    0;
+  margin:11px 0;
 }
 
 .timebox{
   width:100%;
 
-  padding:
-    9px
-    2px;
+  padding:9px 2px;
 
   overflow:hidden;
 
   border:
-    1px solid
-    rgba(255,255,255,.07);
+    1px solid rgba(255,255,255,.07);
 
   border-radius:10px;
 
-  background:
-    rgba(255,255,255,.04);
+  background:rgba(255,255,255,.04);
 
   text-align:center;
 }
 
 .timebox b{
   display:block;
-
   font-size:14px;
-
   line-height:1;
 }
 
@@ -974,28 +791,22 @@ a{
   color:var(--muted);
 
   font-size:6px;
-
   font-weight:900;
-
   letter-spacing:.04em;
-
   text-transform:uppercase;
 }
 
-
 /* =========================================================
-   MEMBER / LEADERSHIP LIST
+   MEMBERS / LEADERSHIP
 ========================================================= */
 
 .list{
   position:relative;
-
   z-index:2;
 
   width:100%;
 
   display:grid;
-
   gap:6px;
 }
 
@@ -1003,34 +814,28 @@ a{
   width:100%;
 
   display:flex;
-
   align-items:center;
 
   gap:8px;
 
-  padding:
-    8px;
+  padding:8px;
 
   overflow:hidden;
 
   border:
-    1px solid
-    rgba(255,255,255,.065);
+    1px solid rgba(255,255,255,.065);
 
   border-radius:11px;
 
-  background:
-    rgba(255,255,255,.035);
+  background:rgba(255,255,255,.035);
 
   transition:.18s ease;
 }
 
 .item:hover{
-  transform:
-    translateY(-1px);
+  transform:translateY(-1px);
 
-  background:
-    rgba(255,255,255,.06);
+  background:rgba(255,255,255,.06);
 
   border-color:
     rgba(181,85,255,.25);
@@ -1040,7 +845,6 @@ a{
   width:100%;
 
   display:flex;
-
   align-items:center;
 
   gap:8px;
@@ -1049,9 +853,7 @@ a{
 }
 
 .avatar{
-  flex:
-    0 0
-    34px;
+  flex:0 0 34px;
 
   width:34px;
   height:34px;
@@ -1068,13 +870,11 @@ a{
     );
 
   border:
-    1px solid
-    rgba(255,255,255,.12);
+    1px solid rgba(255,255,255,.12);
 }
 
 .user-text{
-  flex:
-    1 1 auto;
+  flex:1 1 auto;
 
   width:0;
 
@@ -1089,20 +889,13 @@ a{
   color:#fff;
 
   font-size:11px;
-
   font-weight:900;
-
   line-height:1.25;
 
   white-space:nowrap;
-
   overflow:hidden;
-
   text-overflow:ellipsis;
 }
-
-
-/* RATING / ROLE DIRECTLY UNDER USERNAME */
 
 .user-meta{
   display:block;
@@ -1111,33 +904,24 @@ a{
 
   margin-top:3px;
 
-  color:#c9bad9;
-
   font-size:8px;
-
   font-weight:800;
-
   line-height:1.25;
 
   white-space:nowrap;
-
   overflow:hidden;
-
   text-overflow:ellipsis;
 }
 
 .rating-meta{
   color:#ffb45f;
-
   font-weight:900;
 }
 
 .leadership-role{
   color:#c66fff;
-
   font-weight:900;
 }
-
 
 /* =========================================================
    QUICK LINKS
@@ -1145,15 +929,12 @@ a{
 
 .quick-links{
   position:relative;
-
   z-index:2;
 
   width:100%;
 
   display:grid;
-
   grid-template-columns:1fr;
-
   gap:6px;
 }
 
@@ -1162,29 +943,23 @@ a{
 
   width:100%;
 
-  padding:
-    10px
-    9px;
+  padding:10px 9px;
 
   border:
-    1px solid
-    rgba(255,255,255,.08);
+    1px solid rgba(255,255,255,.08);
 
   border-radius:11px;
 
-  background:
-    rgba(255,255,255,.035);
+  background:rgba(255,255,255,.035);
 
   font-size:10px;
-
   font-weight:900;
 
   transition:.18s ease;
 }
 
 .quick:hover{
-  transform:
-    translateY(-2px);
+  transform:translateY(-2px);
 
   background:
     linear-gradient(
@@ -1194,20 +969,17 @@ a{
     );
 }
 
-
 /* =========================================================
    MATCHES
 ========================================================= */
 
 .match-list{
   width:100%;
-
   overflow:visible;
 }
 
 .match-copy{
-  flex:
-    1 1 auto;
+  flex:1 1 auto;
 
   width:0;
 
@@ -1222,9 +994,7 @@ a{
   font-size:10px;
 
   white-space:nowrap;
-
   overflow:hidden;
-
   text-overflow:ellipsis;
 }
 
@@ -1239,14 +1009,12 @@ a{
 }
 
 .arrow{
-  flex:
-    0 0 auto;
+  flex:0 0 auto;
 
   color:#c879ff;
 
   font-size:12px;
 }
-
 
 /* =========================================================
    FOOTER
@@ -1263,13 +1031,10 @@ a{
     5px;
 
   border-top:
-    1px solid
-    rgba(255,255,255,.08);
+    1px solid rgba(255,255,255,.08);
 
   display:flex;
-
   flex-direction:column;
-
   align-items:center;
 
   gap:5px;
@@ -1283,7 +1048,6 @@ a{
 
 .acfa-link{
   display:block;
-
   max-width:100%;
 }
 
@@ -1307,44 +1071,33 @@ a{
 
 .footer strong{
   color:#fff;
-
   font-size:8px;
 }
 
 .error{
   color:#ffb8b8;
-
   font-size:9px;
 }
-
 
 /* =========================================================
    ANIMATIONS
 ========================================================= */
 
 @keyframes spin{
-
   to{
-    transform:
-      rotate(360deg);
+    transform:rotate(360deg);
   }
-
 }
 
-
 @keyframes voidDrift{
-
   to{
     transform:
       translate(-50%,-50%)
       rotate(349deg);
   }
-
 }
 
-
 @keyframes nexusFloat{
-
   0%,
   100%{
     translate:0 0;
@@ -1353,9 +1106,7 @@ a{
   50%{
     translate:0 -6px;
   }
-
 }
-
 
 /* =========================================================
    EXTRA NARROW
@@ -1403,12 +1154,10 @@ a{
   .timebox b{
     font-size:12px;
   }
-
 }
 
 </style>
 </head>
-
 
 <body>
 
@@ -1416,9 +1165,7 @@ a{
 
 <canvas id="voidCanvas"></canvas>
 
-
 <div class="wrap">
-
 
   <!-- TOP BAR -->
 
@@ -1451,7 +1198,6 @@ a{
 
       </div>
 
-
       <h1>
 
         Enter
@@ -1462,13 +1208,11 @@ a{
 
       </h1>
 
-
       <p>
         A live command center for The Nexus Void:
         members, competition, forums, leadership
         and club activity.
       </p>
-
 
       <div class="hero-actions">
 
@@ -1480,7 +1224,6 @@ a{
           Open Club
         </a>
 
-
         <a
           class="btn"
           href="https://www.chess.com/clubs/forum/the-nexus-void"
@@ -1488,7 +1231,6 @@ a{
         >
           Important Forums
         </a>
-
 
         <a
           class="btn"
@@ -1503,7 +1245,7 @@ a{
     </div>
 
 
-    <!-- UPLOADED NEXUS VOID GIF -->
+    <!-- HERO GIF -->
 
     <div class="ring-stage">
 
@@ -1549,7 +1291,7 @@ a{
       </b>
 
       <span>
-        Loaded Members
+        Members Loaded
       </span>
 
     </div>
@@ -1580,14 +1322,12 @@ a{
         ⚡ Competition Center
       </h2>
 
-
       <div
         class="muted"
         id="mcaStatus"
       >
         Finding the next MCA event…
       </div>
-
 
       <div class="countdown">
 
@@ -1644,7 +1384,6 @@ a{
 
       </div>
 
-
       <small
         class="muted"
         id="mcaMeta"
@@ -1666,7 +1405,6 @@ a{
       <h2>
         Leadership
       </h2>
-
 
       <div
         class="list"
@@ -1698,7 +1436,6 @@ a{
         Newest Members
       </h2>
 
-
       <div
         class="list"
         id="newMembers"
@@ -1729,7 +1466,6 @@ a{
         Important Links
       </h2>
 
-
       <div class="quick-links">
 
         <a
@@ -1740,7 +1476,6 @@ a{
           💬 Club Forums
         </a>
 
-
         <a
           class="quick"
           href="https://www.chess.com/clubs/events/the-nexus-void"
@@ -1748,7 +1483,6 @@ a{
         >
           📅 Club Events
         </a>
-
 
         <a
           class="quick"
@@ -1774,7 +1508,6 @@ a{
       <h2>
         Active Daily Matches
       </h2>
-
 
       <div
         class="match-list list"
@@ -1815,11 +1548,9 @@ a{
 
     </a>
 
-
     <strong>
       Sidebar design © And Chess For All Official
     </strong>
-
 
     <div>
       Created for The Nexus Void.
@@ -1827,10 +1558,8 @@ a{
 
   </footer>
 
-
 </div>
 </div>
-
 
 <script>
 
@@ -1887,7 +1616,6 @@ async function getJSON(url){
       }
     );
 
-
   if(!response.ok){
 
     throw new Error(
@@ -1896,21 +1624,19 @@ async function getJSON(url){
 
   }
 
-
   return response.json();
 
 }
 
 
 /* =========================================================
-   BROWSER CLOCK
+   LOCAL BROWSER CLOCK
 ========================================================= */
 
 function updateLocalClock(){
 
   const now =
     new Date();
-
 
   $("#localClock").textContent =
     now.toLocaleTimeString(
@@ -1922,7 +1648,6 @@ function updateLocalClock(){
         hour12:true
       }
     );
-
 
   $("#localDate").textContent =
     now.toLocaleDateString(
@@ -1936,9 +1661,7 @@ function updateLocalClock(){
 
 }
 
-
 updateLocalClock();
-
 
 setInterval(
   updateLocalClock,
@@ -1958,7 +1681,6 @@ function avatarFor(player){
 
   }
 
-
   return (
     "https://ui-avatars.com/api/?name=" +
     encodeURIComponent(
@@ -1974,7 +1696,7 @@ function avatarFor(player){
 
 
 /* =========================================================
-   HIGHEST CURRENT ELO
+   HIGHEST CURRENT RATING
 ========================================================= */
 
 function getHighestRating(stats){
@@ -2008,10 +1730,8 @@ function getHighestRating(stats){
 
   ];
 
-
   let highest =
     null;
-
 
   for(
     const pool
@@ -2022,7 +1742,6 @@ function getHighestRating(stats){
       stats?.[pool.key]
         ?.last
         ?.rating;
-
 
     if(
       typeof rating === "number" &&
@@ -2050,14 +1769,13 @@ function getHighestRating(stats){
 
   }
 
-
   return highest;
 
 }
 
 
 /* =========================================================
-   MEMBERS
+   NEWEST MEMBERS
 ========================================================= */
 
 async function loadMembers(){
@@ -2069,7 +1787,6 @@ async function loadMembers(){
         `${API}/club/${CLUB}/members`
       );
 
-
     const allMembers = [
 
       ...(data.weekly || []),
@@ -2080,41 +1797,34 @@ async function loadMembers(){
 
     ];
 
-
     const seen =
       new Set();
-
 
     const uniqueMembers =
       allMembers.filter(
         member => {
 
-          const username =
-            member?.username;
-
-
-          if(!username){
-
-            return false;
-
-          }
-
-
-          const normalized =
-            username.toLowerCase();
-
-
           if(
-            seen.has(normalized)
+            !member?.username
           ){
 
             return false;
 
           }
 
+          const key =
+            member.username
+              .toLowerCase();
 
-          seen.add(normalized);
+          if(
+            seen.has(key)
+          ){
 
+            return false;
+
+          }
+
+          seen.add(key);
 
           return true;
 
@@ -2122,12 +1832,36 @@ async function loadMembers(){
       );
 
 
+    /* SORT NEWEST FIRST */
+
+    uniqueMembers.sort(
+      (a,b) => {
+
+        const aJoined =
+          Number(
+            a.joined || 0
+          );
+
+        const bJoined =
+          Number(
+            b.joined || 0
+          );
+
+        return (
+          bJoined -
+          aJoined
+        );
+
+      }
+    );
+
+
     $("#newestCount").textContent =
       uniqueMembers.length
         .toLocaleString();
 
 
-    const displayed =
+    const newestMembers =
       uniqueMembers.slice(
         0,
         6
@@ -2135,55 +1869,72 @@ async function loadMembers(){
 
 
     const memberData =
-      await Promise.all(
-
-        displayed.map(
-
-          async member => {
-
-            const username =
-              member.username;
+      [];
 
 
-            const [
-              profile,
-              stats
-            ] =
-              await Promise.all([
+    /* SERIAL REQUESTS */
 
-                getJSON(
-                  `${API}/player/${encodeURIComponent(username)}`
-                )
-                .catch(
-                  () => member
-                ),
+    for(
+      const member
+      of newestMembers
+    ){
 
-                getJSON(
-                  `${API}/player/${encodeURIComponent(username)}/stats`
-                )
-                .catch(
-                  () => null
-                )
-
-              ]);
+      const username =
+        member.username;
 
 
-            return {
+      let profile =
+        member;
 
-              profile,
 
-              highest:
-                getHighestRating(
-                  stats
-                )
+      let stats =
+        null;
 
-            };
 
-          }
+      try{
 
-        )
+        profile =
+          await getJSON(
+            `${API}/player/${encodeURIComponent(username)}`
+          );
 
-      );
+      }
+      catch(error){
+
+        profile =
+          member;
+
+      }
+
+
+      try{
+
+        stats =
+          await getJSON(
+            `${API}/player/${encodeURIComponent(username)}/stats`
+          );
+
+      }
+      catch(error){
+
+        stats =
+          null;
+
+      }
+
+
+      memberData.push({
+
+        profile,
+
+        highest:
+          getHighestRating(
+            stats
+          )
+
+      });
+
+    }
 
 
     if(
@@ -2201,7 +1952,6 @@ async function loadMembers(){
         </div>
         `;
 
-
       return;
 
     }
@@ -2214,15 +1964,12 @@ async function loadMembers(){
           const player =
             member.profile;
 
-
           const username =
             player.username ||
             "";
 
-
           const rating =
             member.highest;
-
 
           let ratingText =
             "Unrated";
@@ -2282,7 +2029,6 @@ async function loadMembers(){
     $("#newestCount").textContent =
       "—";
 
-
     $("#newMembers").innerHTML =
       `
       <div class="item">
@@ -2327,40 +2073,39 @@ async function loadLeadership(){
 
 
   const profiles =
-    await Promise.all(
-
-      leaders.map(
-
-        async leader => {
-
-          try{
-
-            const profile =
-              await getJSON(
-                `${API}/player/${encodeURIComponent(leader.username)}`
-              );
+    [];
 
 
-            return {
+  for(
+    const leader
+    of leaders
+  ){
 
-              ...leader,
+    try{
 
-              ...profile
+      const profile =
+        await getJSON(
+          `${API}/player/${encodeURIComponent(leader.username)}`
+        );
 
-            };
+      profiles.push({
 
-          }
-          catch(error){
+        ...leader,
 
-            return leader;
+        ...profile
 
-          }
+      });
 
-        }
+    }
+    catch(error){
 
-      )
+      profiles.push(
+        leader
+      );
 
-    );
+    }
+
+  }
 
 
   $("#leadership").innerHTML =
@@ -2369,7 +2114,6 @@ async function loadLeadership(){
 
         const username =
           profile.username;
-
 
         return `
         <a
@@ -2433,7 +2177,6 @@ async function loadMatches(){
           $("#mcaStatus").textContent =
             "MCA timing unavailable.";
 
-
           $("#mcaMeta").innerHTML =
             `
             <a
@@ -2485,7 +2228,6 @@ async function loadMatches(){
 
         </div>
         `;
-
 
       return;
 
@@ -2548,7 +2290,6 @@ async function loadMatches(){
     $("#dailyCount").textContent =
       "—";
 
-
     $("#dailyMatches").innerHTML =
       `
       <div class="item">
@@ -2559,7 +2300,6 @@ async function loadMatches(){
 
       </div>
       `;
-
 
     $("#mcaStatus").textContent =
       "MCA timing unavailable.";
@@ -2575,7 +2315,6 @@ async function loadMatches(){
 
 let mcaStartTime =
   null;
-
 
 let mcaEvent =
   null;
@@ -2646,8 +2385,6 @@ function unixToDate(value){
 }
 
 
-/* MATCH URL */
-
 function matchWebUrl(match){
 
   if(
@@ -2691,8 +2428,6 @@ function matchWebUrl(match){
 
 }
 
-
-/* FIND NEXT MCA */
 
 async function resolveNextMCA(
   clubMatches
@@ -2800,7 +2535,6 @@ async function resolveNextMCA(
     mcaEvent =
       upcoming[0];
 
-
     mcaStartTime =
       mcaEvent._start;
 
@@ -2836,7 +2570,6 @@ async function resolveNextMCA(
 
     tickCountdown();
 
-
     return;
 
   }
@@ -2861,7 +2594,6 @@ async function resolveNextMCA(
 
     mcaStartTime =
       null;
-
 
     mcaEvent =
       active;
@@ -2902,7 +2634,6 @@ async function resolveNextMCA(
       "00"
     );
 
-
     return;
 
   }
@@ -2937,8 +2668,6 @@ async function resolveNextMCA(
 }
 
 
-/* COUNTDOWN VALUES */
-
 function setCountdownValues(
   days,
   hours,
@@ -2960,8 +2689,6 @@ function setCountdownValues(
 
 }
 
-
-/* COUNTDOWN */
 
 function tickCountdown(){
 
@@ -3006,7 +2733,6 @@ function tickCountdown(){
         MCA is starting now.
       </span>
       `;
-
 
     return;
 
@@ -3318,7 +3044,6 @@ function animateVoid(){
       resetParticle(
         particle
       );
-
 
       continue;
 
