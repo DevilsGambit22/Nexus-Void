@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"
+>
 <meta name="theme-color" content="#0a0611">
 
 <title>The Nexus Void | Club Dashboard</title>
@@ -24,16 +27,68 @@
 
 *{
   box-sizing:border-box;
+  min-width:0;
 }
 
 html{
+  width:100%;
+  max-width:100%;
+  margin:0;
+  padding:0;
+
   scroll-behavior:smooth;
+
   background:#050308;
+
+  overflow-x:hidden;
+  overflow-y:scroll;
+
+  scrollbar-width:thin;
+  scrollbar-color:
+    rgba(183,92,255,.72)
+    rgba(7,5,12,.30);
+}
+
+/* THIN SCROLLBAR ATTACHED TO SIDEBAR EDGE */
+html::-webkit-scrollbar{
+  width:5px;
+}
+
+html::-webkit-scrollbar-track{
+  background:
+    rgba(5,3,8,.30);
+}
+
+html::-webkit-scrollbar-thumb{
+  background:
+    linear-gradient(
+      180deg,
+      #ff8a24,
+      #9b4dff,
+      #7225dc
+    );
+
+  border-radius:999px;
+}
+
+html::-webkit-scrollbar-thumb:hover{
+  background:
+    linear-gradient(
+      180deg,
+      #ffae42,
+      #c063ff
+    );
 }
 
 body{
+  width:100%;
+  max-width:100%;
+
   margin:0;
+  padding:0;
+
   min-height:100vh;
+
   font-family:
     Inter,
     ui-sans-serif,
@@ -42,6 +97,7 @@ body{
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
+
   color:var(--text);
 
   background:
@@ -82,14 +138,18 @@ body{
     );
 
   background-attachment:fixed;
+
   overflow-x:hidden;
 }
 
-/* BLACK HOLE ACCRETION DISC */
+/* BLACK HOLE */
 body::before{
   content:"";
+
   position:fixed;
+
   z-index:0;
+
   left:50%;
   top:42%;
 
@@ -115,18 +175,23 @@ body::before{
     );
 
   filter:blur(18px);
+
   opacity:.8;
+
   pointer-events:none;
 
   animation:voidDrift 24s linear infinite;
 }
 
-/* DEEP VOID VIGNETTE */
 body::after{
   content:"";
+
   position:fixed;
+
   inset:0;
+
   z-index:0;
+
   pointer-events:none;
 
   background:
@@ -148,63 +213,108 @@ input{
   font:inherit;
 }
 
-/* PARTICLE CANVAS */
+/* PARTICLES */
 #voidCanvas{
   position:fixed;
+
   inset:0;
+
+  width:100%;
+  height:100%;
+
   z-index:0;
+
   pointer-events:none;
+
   opacity:.65;
 }
 
-/* MAIN WRAPPER */
+/* MAIN SIDEBAR WRAPPER */
 .wrap{
   position:relative;
+
   z-index:1;
 
-  width:min(1040px,100%);
-  margin:0 auto;
-  padding:18px 14px 42px;
+  width:100%;
+  max-width:100%;
+
+  margin:0;
+
+  padding:
+    10px
+    9px
+    34px
+    9px;
+
+  overflow:hidden;
 }
 
 /* TOP BAR */
 .topbar{
+  width:100%;
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
-  gap:12px;
 
-  padding:12px 14px;
+  gap:8px;
 
-  border:1px solid var(--line);
-  border-radius:18px;
+  padding:
+    10px
+    11px;
 
-  background:rgba(8,5,14,.72);
+  border:
+    1px solid var(--line);
 
-  backdrop-filter:blur(14px);
+  border-radius:16px;
 
-  box-shadow:var(--shadow);
+  background:
+    rgba(8,5,14,.78);
+
+  backdrop-filter:
+    blur(14px);
+
+  -webkit-backdrop-filter:
+    blur(14px);
+
+  box-shadow:
+    var(--shadow);
 
   position:sticky;
-  top:8px;
+
+  top:5px;
+
   z-index:10;
+
+  overflow:hidden;
 }
 
 .brand{
   display:flex;
+
   align-items:center;
-  gap:10px;
+
+  gap:8px;
+
+  flex:1 1 auto;
+
   min-width:0;
 }
 
-/* SMALL LOGO */
 .mini-ring{
   position:relative;
 
-  width:34px;
-  height:34px;
+  flex:
+    0 0
+    31px;
+
+  width:31px;
+  height:31px;
 
   border-radius:50%;
+
   padding:3px;
 
   background:
@@ -218,13 +328,19 @@ input{
     );
 
   box-shadow:
-    0 0 18px rgba(162,71,255,.45);
+    0 0 18px
+    rgba(162,71,255,.45);
 
-  animation:spin 8s linear infinite;
+  animation:
+    spin
+    8s
+    linear
+    infinite;
 }
 
 .mini-ring::after{
   content:"";
+
   display:block;
 
   width:100%;
@@ -236,90 +352,120 @@ input{
 }
 
 .brand strong{
-  font-size:14px;
-  letter-spacing:.08em;
+  display:block;
+
+  max-width:100%;
+
+  font-size:13px;
+
+  letter-spacing:.06em;
+
   text-transform:uppercase;
 
   white-space:nowrap;
+
   overflow:hidden;
+
   text-overflow:ellipsis;
 }
 
 .live-dot{
   display:inline-block;
 
-  width:8px;
-  height:8px;
+  width:7px;
+  height:7px;
 
   border-radius:50%;
 
   background:#8cff69;
 
-  margin-right:6px;
+  margin-right:5px;
 
   box-shadow:
-    0 0 12px #8cff69;
+    0 0 10px
+    #8cff69;
 }
 
 .toplinks{
   display:flex;
-  gap:8px;
+
+  gap:6px;
+
   flex-wrap:wrap;
+
   justify-content:flex-end;
 }
 
 .btn{
+  max-width:100%;
+
   border:
-    1px solid rgba(255,255,255,.10);
+    1px solid
+    rgba(255,255,255,.10);
 
   background:
     rgba(255,255,255,.055);
 
-  padding:8px 11px;
+  padding:
+    8px
+    10px;
 
-  border-radius:11px;
+  border-radius:10px;
 
-  font-size:12px;
+  font-size:11px;
+
   font-weight:800;
 
   color:#fff;
 
   transition:.2s ease;
 
-  white-space:nowrap;
+  white-space:normal;
+
+  overflow-wrap:anywhere;
+
+  text-align:center;
 }
 
 .btn:hover{
-  transform:translateY(-2px);
+  transform:
+    translateY(-2px);
 
   border-color:
     rgba(192,92,255,.55);
 
   box-shadow:
-    0 10px 26px rgba(143,60,255,.22);
+    0 10px 26px
+    rgba(143,60,255,.22);
 }
 
 /* HERO */
 .hero{
-  margin-top:16px;
+  width:100%;
 
-  min-height:390px;
+  margin-top:11px;
 
-  border-radius:28px;
+  min-height:330px;
+
+  border-radius:22px;
 
   border:
-    1px solid rgba(255,255,255,.09);
+    1px solid
+    rgba(255,255,255,.09);
 
   overflow:hidden;
 
   position:relative;
 
-  padding:34px 24px;
+  padding:
+    24px
+    18px;
 
   display:grid;
 
   grid-template-columns:
-    1.12fr .88fr;
+    minmax(0,1.12fr)
+    minmax(0,.88fr);
 
   align-items:center;
 
@@ -345,6 +491,7 @@ input{
   content:"";
 
   position:absolute;
+
   inset:-40%;
 
   background:
@@ -358,20 +505,34 @@ input{
     );
 
   animation:
-    spin 22s linear infinite;
+    spin
+    22s
+    linear
+    infinite;
 }
 
 .hero-copy{
   position:relative;
+
   z-index:2;
+
+  width:100%;
+
+  overflow:hidden;
 }
 
 .eyebrow{
+  max-width:100%;
+
   display:inline-flex;
-  gap:8px;
+
+  gap:7px;
+
   align-items:center;
 
-  padding:7px 10px;
+  padding:
+    6px
+    9px;
 
   border-radius:999px;
 
@@ -379,27 +540,44 @@ input{
     rgba(255,255,255,.06);
 
   border:
-    1px solid rgba(255,255,255,.08);
+    1px solid
+    rgba(255,255,255,.08);
 
-  font-size:11px;
+  font-size:10px;
+
   font-weight:900;
 
-  letter-spacing:.12em;
+  letter-spacing:.09em;
+
   text-transform:uppercase;
 
   color:#d9d0e3;
+
+  white-space:normal;
+
+  overflow-wrap:anywhere;
 }
 
 .hero h1{
-  font-size:
-    clamp(38px,7vw,72px);
+  width:100%;
 
-  line-height:.92;
+  font-size:
+    clamp(
+      34px,
+      7vw,
+      67px
+    );
+
+  line-height:.94;
 
   margin:
-    18px 0 12px;
+    16px
+    0
+    11px;
 
-  letter-spacing:-.05em;
+  letter-spacing:-.045em;
+
+  overflow-wrap:anywhere;
 }
 
 .hero h1 span{
@@ -413,56 +591,75 @@ input{
     );
 
   -webkit-background-clip:text;
+
   background-clip:text;
 
   color:transparent;
 }
 
 .hero p{
+  width:100%;
+
   margin:0;
 
   max-width:560px;
 
-  font-size:15px;
-  line-height:1.65;
+  font-size:14px;
+
+  line-height:1.6;
 
   color:var(--muted);
+
+  overflow-wrap:anywhere;
 }
 
 .hero-actions{
+  width:100%;
+
   display:flex;
-  gap:9px;
+
+  gap:7px;
+
   flex-wrap:wrap;
 
-  margin-top:20px;
+  margin-top:17px;
 }
 
 .hero-actions .btn{
-  padding:10px 14px;
+  padding:
+    9px
+    11px;
 }
 
 /* LARGE VOID LOGO */
 .ring-stage{
   position:relative;
+
   z-index:2;
 
-  height:310px;
+  height:270px;
 
   display:grid;
+
   place-items:center;
+
+  overflow:hidden;
 }
 
 .void-ring{
   position:relative;
 
   width:
-    min(235px,64vw);
+    min(
+      210px,
+      58vw
+    );
 
   aspect-ratio:1;
 
   border-radius:50%;
 
-  padding:14px;
+  padding:13px;
 
   background:
     conic-gradient(
@@ -481,7 +678,10 @@ input{
     );
 
   animation:
-    spin 12s linear infinite;
+    spin
+    12s
+    linear
+    infinite;
 }
 
 .void-ring::before{
@@ -509,6 +709,7 @@ input{
 
 .ring-title{
   position:absolute;
+
   inset:0;
 
   z-index:4;
@@ -518,6 +719,7 @@ input{
   flex-direction:column;
 
   align-items:center;
+
   justify-content:center;
 
   text-align:center;
@@ -525,37 +727,46 @@ input{
   pointer-events:none;
 
   animation:
-    counterSpin 12s linear infinite;
+    counterSpin
+    12s
+    linear
+    infinite;
 
   text-shadow:
-    0 0 9px rgba(255,255,255,.55),
-    0 0 20px rgba(160,69,255,.75),
-    0 0 32px rgba(255,112,24,.38);
+    0 0 9px
+    rgba(255,255,255,.55),
+
+    0 0 20px
+    rgba(160,69,255,.75),
+
+    0 0 32px
+    rgba(255,112,24,.38);
 }
 
 .ring-title span{
-  font-size:15px;
+  font-size:13px;
+
   line-height:1.05;
 
   font-weight:900;
 
-  letter-spacing:.32em;
+  letter-spacing:.27em;
 
-  margin-right:-.32em;
+  margin-right:-.27em;
 
   color:#eee7ff;
 }
 
 .ring-title strong{
-  font-size:34px;
+  font-size:29px;
 
   line-height:1.02;
 
   font-weight:1000;
 
-  letter-spacing:.08em;
+  letter-spacing:.07em;
 
-  margin-right:-.08em;
+  margin-right:-.07em;
 
   background:
     linear-gradient(
@@ -566,6 +777,7 @@ input{
     );
 
   -webkit-background-clip:text;
+
   background-clip:text;
 
   color:transparent;
@@ -574,8 +786,8 @@ input{
 .orb{
   position:absolute;
 
-  width:8px;
-  height:8px;
+  width:7px;
+  height:7px;
 
   border-radius:50%;
 
@@ -585,22 +797,34 @@ input{
     0 0 14px #fff;
 
   animation:
-    orbit 5s linear infinite;
+    orbit
+    5s
+    linear
+    infinite;
 }
 
 /* STATS */
 .stats{
+  width:100%;
+
   display:grid;
 
   grid-template-columns:
-    repeat(3,1fr);
+    repeat(
+      3,
+      minmax(0,1fr)
+    );
 
-  gap:10px;
+  gap:8px;
 
-  margin-top:14px;
+  margin-top:10px;
 }
 
 .stat{
+  width:100%;
+
+  overflow:hidden;
+
   background:
     linear-gradient(
       180deg,
@@ -609,46 +833,67 @@ input{
     );
 
   border:
-    1px solid rgba(255,255,255,.08);
+    1px solid
+    rgba(255,255,255,.08);
 
-  border-radius:16px;
+  border-radius:14px;
 
-  padding:14px;
+  padding:
+    12px
+    7px;
 
   text-align:center;
 
   box-shadow:
-    0 12px 28px rgba(0,0,0,.2);
+    0 12px 28px
+    rgba(0,0,0,.2);
 
   transition:.2s ease;
 }
 
 .stat:hover{
-  transform:translateY(-3px);
+  transform:
+    translateY(-3px);
 
   border-color:
     rgba(181,85,255,.36);
-
-  box-shadow:
-    0 14px 34px rgba(0,0,0,.28),
-    0 0 20px rgba(143,60,255,.12);
 }
 
 .stat b{
   display:block;
-  font-size:22px;
+
+  width:100%;
+
+  font-size:
+    clamp(
+      16px,
+      4vw,
+      21px
+    );
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
 }
 
 .stat span{
-  font-size:10px;
+  display:block;
+
+  width:100%;
+
+  font-size:8px;
 
   color:var(--muted);
 
   text-transform:uppercase;
 
-  letter-spacing:.12em;
+  letter-spacing:.08em;
 
   font-weight:900;
+
+  overflow-wrap:anywhere;
 }
 
 .local-date{
@@ -658,42 +903,57 @@ input{
 
   color:#8e829e;
 
-  font-size:9px;
+  font-size:8px;
 
   font-weight:700;
 
-  line-height:1.35;
+  line-height:1.3;
+
+  overflow-wrap:anywhere;
 }
 
 /* SECTIONS */
 .section{
-  margin-top:14px;
+  width:100%;
+
+  margin-top:11px;
 
   display:grid;
 
-  gap:14px;
+  gap:11px;
 }
 
 .grid2{
   grid-template-columns:
-    repeat(2,minmax(0,1fr));
+    repeat(
+      2,
+      minmax(0,1fr)
+    );
 }
 
 .grid3{
   grid-template-columns:
-    repeat(3,minmax(0,1fr));
+    repeat(
+      3,
+      minmax(0,1fr)
+    );
 }
 
 /* CARDS */
 .card{
+  width:100%;
+
+  min-width:0;
+
   position:relative;
 
   overflow:hidden;
 
   border:
-    1px solid rgba(255,255,255,.08);
+    1px solid
+    rgba(255,255,255,.08);
 
-  border-radius:20px;
+  border-radius:18px;
 
   background:
     linear-gradient(
@@ -702,10 +962,11 @@ input{
       rgba(10,7,16,.88)
     );
 
-  padding:18px;
+  padding:15px;
 
   box-shadow:
-    0 16px 42px rgba(0,0,0,.28);
+    0 16px 42px
+    rgba(0,0,0,.28);
 
   transition:.22s ease;
 }
@@ -724,7 +985,10 @@ input{
   position:absolute;
 
   inset:
-    auto -20% -65% 30%;
+    auto
+    -20%
+    -65%
+    30%;
 
   height:140px;
 
@@ -740,91 +1004,135 @@ input{
 
 .card h2,
 .card h3{
+  width:100%;
+
   margin:
-    0 0 10px;
+    0
+    0
+    9px;
+
+  overflow-wrap:anywhere;
 }
 
 .card h2{
-  font-size:18px;
+  font-size:17px;
 }
 
 .card h3{
-  font-size:15px;
+  font-size:14px;
 }
 
 .muted{
   color:var(--muted);
+
+  overflow-wrap:anywhere;
 }
 
-/* MCA COUNTDOWN */
+/* COUNTDOWN */
 .countdown{
+  width:100%;
+
   display:grid;
 
   grid-template-columns:
-    repeat(4,1fr);
+    repeat(
+      4,
+      minmax(0,1fr)
+    );
 
-  gap:8px;
+  gap:6px;
 
   margin:
-    14px 0;
+    12px
+    0;
 }
 
 .timebox{
-  padding:
-    12px 6px;
+  width:100%;
 
-  border-radius:14px;
+  min-width:0;
+
+  padding:
+    10px
+    3px;
+
+  border-radius:12px;
 
   background:
     rgba(255,255,255,.045);
 
   border:
-    1px solid rgba(255,255,255,.07);
+    1px solid
+    rgba(255,255,255,.07);
 
   text-align:center;
+
+  overflow:hidden;
 }
 
 .timebox b{
   display:block;
 
-  font-size:22px;
+  font-size:
+    clamp(
+      15px,
+      4vw,
+      20px
+    );
+
+  white-space:nowrap;
 }
 
 .timebox span{
-  font-size:9px;
+  display:block;
+
+  font-size:7px;
 
   color:var(--muted);
 
   text-transform:uppercase;
 
-  letter-spacing:.1em;
+  letter-spacing:.06em;
+
+  overflow-wrap:anywhere;
 }
 
 /* LISTS */
 .list{
+  width:100%;
+
   display:grid;
 
-  gap:8px;
+  gap:7px;
 }
 
 .item{
+  width:100%;
+
+  min-width:0;
+
   display:flex;
 
   align-items:center;
+
   justify-content:space-between;
 
-  gap:10px;
+  gap:7px;
 
   padding:
-    11px 12px;
+    9px
+    9px;
 
-  border-radius:13px;
+  border-radius:12px;
 
   border:
-    1px solid rgba(255,255,255,.065);
+    1px solid
+    rgba(255,255,255,.065);
 
   background:
     rgba(255,255,255,.035);
+
+  overflow:hidden;
 }
 
 .item:hover{
@@ -834,24 +1142,42 @@ input{
 
 .item small{
   display:block;
+
   color:var(--muted);
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+
+  white-space:nowrap;
 }
 
 .user{
+  flex:
+    1 1 auto;
+
+  width:auto;
+
+  min-width:0;
+
   display:flex;
 
   align-items:center;
 
-  gap:10px;
+  gap:8px;
 
-  min-width:0;
+  overflow:hidden;
 }
 
 .avatar{
-  width:38px;
-  height:38px;
+  flex:
+    0 0
+    35px;
 
-  border-radius:11px;
+  width:35px;
+  height:35px;
+
+  border-radius:10px;
 
   object-fit:cover;
 
@@ -863,15 +1189,27 @@ input{
     );
 
   border:
-    1px solid rgba(255,255,255,.12);
+    1px solid
+    rgba(255,255,255,.12);
 }
 
 .user-text{
+  flex:
+    1 1 auto;
+
+  width:0;
+
   min-width:0;
+
+  overflow:hidden;
 }
 
 .user-text b{
   display:block;
+
+  width:100%;
+
+  font-size:13px;
 
   white-space:nowrap;
 
@@ -882,20 +1220,42 @@ input{
 
 .user-text small{
   display:block;
+
+  width:100%;
+
+  margin-top:2px;
+
+  font-size:10px;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
 }
 
+/* RATING */
 .member-rating{
+  flex:
+    0 0 auto;
+
+  max-width:72px;
+
+  min-width:51px;
+
   display:flex;
+
   flex-direction:column;
-  align-items:flex-end;
+
+  align-items:center;
+
   justify-content:center;
 
-  flex-shrink:0;
-
   padding:
-    6px 9px;
+    5px
+    6px;
 
-  border-radius:10px;
+  border-radius:9px;
 
   background:
     linear-gradient(
@@ -905,40 +1265,70 @@ input{
     );
 
   border:
-    1px solid rgba(255,255,255,.07);
+    1px solid
+    rgba(255,255,255,.07);
+
+  overflow:hidden;
 }
 
 .member-rating b{
-  font-size:14px;
+  display:block;
+
+  max-width:100%;
+
+  font-size:12px;
+
   line-height:1;
-  color:#fff;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
 }
 
 .member-rating span{
+  display:block;
+
+  max-width:100%;
+
   margin-top:3px;
 
-  font-size:8px;
+  font-size:7px;
 
   color:var(--muted);
 
   text-transform:uppercase;
 
-  letter-spacing:.09em;
+  letter-spacing:.04em;
 
   font-weight:900;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
 }
 
+/* LEADERSHIP ROLE */
 .role-tag{
-  font-size:9px;
+  flex:
+    0 0 auto;
+
+  max-width:68px;
+
+  font-size:8px;
 
   font-weight:900;
 
-  letter-spacing:.09em;
+  letter-spacing:.04em;
 
   text-transform:uppercase;
 
   padding:
-    5px 7px;
+    5px
+    6px;
 
   border-radius:999px;
 
@@ -950,35 +1340,60 @@ input{
     );
 
   border:
-    1px solid rgba(255,255,255,.07);
+    1px solid
+    rgba(255,255,255,.07);
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
 }
 
 /* IMPORTANT LINKS */
 .quick-links{
+  width:100%;
+
   display:grid;
 
   grid-template-columns:
-    repeat(3,minmax(0,1fr));
+    repeat(
+      3,
+      minmax(0,1fr)
+    );
 
-  gap:9px;
+  gap:7px;
 }
 
 .quick{
-  padding:15px;
+  width:100%;
 
-  border-radius:15px;
+  min-width:0;
+
+  padding:
+    12px
+    8px;
+
+  border-radius:13px;
 
   border:
-    1px solid rgba(255,255,255,.08);
+    1px solid
+    rgba(255,255,255,.08);
 
   background:
     rgba(255,255,255,.035);
 
   font-weight:900;
 
-  font-size:13px;
+  font-size:11px;
 
   transition:.2s ease;
+
+  text-align:center;
+
+  white-space:normal;
+
+  overflow-wrap:anywhere;
 }
 
 .quick:hover{
@@ -993,35 +1408,34 @@ input{
     );
 }
 
-/* DAILY MATCHES */
+/* DAILY MATCHES
+   NO INNER SCROLLBAR.
+   THE MAIN SIDEBAR SCROLLBAR HANDLES EVERYTHING.
+*/
 .match-list{
-  max-height:360px;
+  width:100%;
 
-  overflow:auto;
+  max-height:none;
 
-  padding-right:3px;
-}
+  overflow:visible;
 
-.match-list::-webkit-scrollbar{
-  width:6px;
-}
-
-.match-list::-webkit-scrollbar-thumb{
-  background:
-    rgba(185,98,255,.35);
-
-  border-radius:999px;
+  padding-right:0;
 }
 
 /* FOOTER */
 .footer{
-  margin-top:16px;
+  width:100%;
+
+  margin-top:13px;
 
   border-top:
-    1px solid rgba(255,255,255,.08);
+    1px solid
+    rgba(255,255,255,.08);
 
   padding:
-    22px 8px 4px;
+    18px
+    6px
+    4px;
 
   display:flex;
 
@@ -1031,24 +1445,29 @@ input{
 
   flex-direction:column;
 
-  gap:7px;
+  gap:6px;
 
   color:var(--muted);
 
   text-align:center;
+
+  overflow:hidden;
 }
 
 .acfa-link{
+  max-width:100%;
+
   display:inline-flex;
 
   align-items:center;
 
-  gap:10px;
+  justify-content:center;
 
   padding:
-    8px 12px;
+    7px
+    9px;
 
-  border-radius:14px;
+  border-radius:13px;
 
   transition:.2s ease;
 }
@@ -1062,11 +1481,11 @@ input{
 }
 
 .acfa-logo{
-  height:110px;
+  height:90px;
 
   width:auto;
 
-  max-width:220px;
+  max-width:100%;
 
   object-fit:contain;
 
@@ -1083,10 +1502,18 @@ input{
   color:#fff;
 }
 
+.footer div{
+  max-width:100%;
+
+  overflow-wrap:anywhere;
+}
+
 .error{
   color:#ffb8b8;
 
-  font-size:12px;
+  font-size:11px;
+
+  overflow-wrap:anywhere;
 }
 
 /* ANIMATIONS */
@@ -1116,23 +1543,37 @@ input{
   from{
     transform:
       rotate(0deg)
-      translateX(135px)
+      translateX(115px)
       rotate(0deg);
   }
 
   to{
     transform:
       rotate(360deg)
-      translateX(135px)
+      translateX(115px)
       rotate(-360deg);
   }
 }
 
-/* MOBILE */
+/* SIDEBAR / MOBILE MODE */
 @media(max-width:760px){
 
-  .quick-links{
-    grid-template-columns:1fr;
+  .wrap{
+    padding:
+      8px
+      7px
+      28px
+      7px;
+  }
+
+  .topbar{
+    padding:
+      9px
+      10px;
+  }
+
+  .toplinks{
+    display:none;
   }
 
   .hero{
@@ -1141,15 +1582,58 @@ input{
     min-height:0;
 
     padding:
-      25px 18px;
+      20px
+      15px;
+  }
+
+  .hero h1{
+    font-size:
+      clamp(
+        36px,
+        14vw,
+        55px
+      );
+  }
+
+  .hero p{
+    font-size:13px;
+  }
+
+  .hero-actions{
+    display:grid;
+
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0,1fr)
+      );
+  }
+
+  .hero-actions .btn:last-child{
+    grid-column:
+      1 / -1;
   }
 
   .ring-stage{
-    height:250px;
+    height:220px;
+
+    margin-top:4px;
+  }
+
+  .void-ring{
+    width:
+      min(
+        185px,
+        58vw
+      );
   }
 
   .stats{
-    grid-template-columns:1fr;
+    grid-template-columns:
+      repeat(
+        3,
+        minmax(0,1fr)
+      );
   }
 
   .grid2,
@@ -1157,12 +1641,199 @@ input{
     grid-template-columns:1fr;
   }
 
-  .toplinks{
-    display:none;
+  .quick-links{
+    grid-template-columns:1fr;
+  }
+
+  .card{
+    padding:14px;
+  }
+
+  .card h2{
+    font-size:16px;
+  }
+
+  .item{
+    gap:6px;
+
+    padding:
+      9px
+      8px;
+  }
+
+  .avatar{
+    flex-basis:34px;
+
+    width:34px;
+    height:34px;
+  }
+
+  .user{
+    gap:7px;
+  }
+
+  .user-text b{
+    font-size:12px;
+  }
+
+  .user-text small{
+    font-size:9px;
   }
 
   .member-rating{
-    padding:6px 7px;
+    min-width:48px;
+
+    max-width:62px;
+
+    padding:
+      5px
+      4px;
+  }
+
+  .member-rating b{
+    font-size:11px;
+  }
+
+  .member-rating span{
+    font-size:6px;
+  }
+
+  .role-tag{
+    max-width:57px;
+
+    padding:
+      5px
+      5px;
+
+    font-size:7px;
+  }
+
+  .countdown{
+    gap:5px;
+  }
+
+  .timebox{
+    padding:
+      9px
+      2px;
+  }
+
+  .timebox span{
+    font-size:6px;
+  }
+}
+
+/* EXTRA NARROW CHESS.COM SIDEBAR */
+@media(max-width:430px){
+
+  .wrap{
+    padding:
+      7px
+      6px
+      26px;
+  }
+
+  .brand strong{
+    font-size:12px;
+  }
+
+  .hero{
+    padding:
+      18px
+      13px;
+
+    border-radius:19px;
+  }
+
+  .eyebrow{
+    font-size:9px;
+  }
+
+  .hero-actions{
+    grid-template-columns:1fr;
+  }
+
+  .hero-actions .btn:last-child{
+    grid-column:auto;
+  }
+
+  .stats{
+    gap:5px;
+  }
+
+  .stat{
+    padding:
+      10px
+      3px;
+  }
+
+  .stat b{
+    font-size:15px;
+  }
+
+  .stat span{
+    font-size:6px;
+
+    letter-spacing:.03em;
+  }
+
+  .local-date{
+    font-size:6px;
+  }
+
+  .card{
+    padding:
+      13px
+      11px;
+  }
+
+  .countdown{
+    gap:4px;
+  }
+
+  .timebox{
+    padding:
+      9px
+      1px;
+  }
+
+  .timebox b{
+    font-size:15px;
+  }
+
+  .avatar{
+    flex-basis:32px;
+
+    width:32px;
+    height:32px;
+  }
+
+  .user-text b{
+    font-size:11px;
+  }
+
+  .user-text small{
+    font-size:8px;
+  }
+
+  .member-rating{
+    max-width:54px;
+
+    min-width:44px;
+
+    padding:
+      5px
+      3px;
+  }
+
+  .member-rating b{
+    font-size:10px;
+  }
+
+  .role-tag{
+    max-width:51px;
+
+    font-size:6px;
   }
 }
 </style>
@@ -1301,10 +1972,9 @@ input{
 
   </section>
 
-  <!-- LIVE STATS -->
+  <!-- STATS -->
   <section class="stats">
 
-    <!-- BROWSER / DEVICE CLOCK -->
     <div class="stat">
 
       <b id="localClock">
@@ -1319,7 +1989,7 @@ input{
         class="local-date"
         id="localDate"
       >
-        Loading date…
+        Loading…
       </small>
 
     </div>
@@ -1363,8 +2033,7 @@ input{
         class="muted"
         id="mcaStatus"
       >
-        Finding the next MCA event from
-        the club match feed…
+        Finding the next MCA event from the club match feed…
       </div>
 
       <div class="countdown">
@@ -1423,8 +2092,7 @@ input{
         class="muted"
         id="mcaMeta"
       >
-        The countdown uses the scheduled
-        start time of the next MCA match.
+        The countdown uses the scheduled start time of the next MCA match.
       </small>
 
     </article>
@@ -1586,7 +2254,8 @@ input{
 </div>
 
 <script>
-const CLUB = "the-nexus-void";
+const CLUB =
+  "the-nexus-void";
 
 const API =
   "https://api.chess.com/pub";
@@ -1596,9 +2265,7 @@ const $ =
     document.querySelector(selector);
 
 
-/* =========================================================
-   SAFE HTML TEXT
-========================================================= */
+/* SAFE TEXT */
 function safeText(value){
 
   return String(value ?? "")
@@ -1616,9 +2283,7 @@ function safeText(value){
 }
 
 
-/* =========================================================
-   API REQUEST
-========================================================= */
+/* API */
 async function getJSON(url){
 
   const response =
@@ -1626,7 +2291,8 @@ async function getJSON(url){
       url,
       {
         headers:{
-          "Accept":"application/json"
+          "Accept":
+            "application/json"
         }
       }
     );
@@ -1644,24 +2310,15 @@ async function getJSON(url){
 }
 
 
-/* =========================================================
-   BROWSER / DEVICE CLOCK
-========================================================= */
+/* LOCAL BROWSER CLOCK */
 function updateLocalClock(){
 
   const now =
     new Date();
 
-  const clock =
-    $("#localClock");
+  if($("#localClock")){
 
-  const date =
-    $("#localDate");
-
-
-  if(clock){
-
-    clock.textContent =
+    $("#localClock").textContent =
       now.toLocaleTimeString(
         [],
         {
@@ -1674,24 +2331,20 @@ function updateLocalClock(){
 
   }
 
+  if($("#localDate")){
 
-  if(date){
-
-    date.textContent =
+    $("#localDate").textContent =
       now.toLocaleDateString(
         [],
         {
-          weekday:"short",
           month:"short",
-          day:"numeric",
-          year:"numeric"
+          day:"numeric"
         }
       );
 
   }
 
 }
-
 
 updateLocalClock();
 
@@ -1701,9 +2354,7 @@ setInterval(
 );
 
 
-/* =========================================================
-   PLAYER AVATAR
-========================================================= */
+/* AVATAR */
 function avatarFor(player){
 
   if(player?.avatar){
@@ -1715,7 +2366,8 @@ function avatarFor(player){
   return (
     "https://ui-avatars.com/api/?name=" +
     encodeURIComponent(
-      player?.username || "N"
+      player?.username ||
+      "N"
     ) +
     "&background=3b175f" +
     "&color=ffffff" +
@@ -1725,9 +2377,7 @@ function avatarFor(player){
 }
 
 
-/* =========================================================
-   HIGHEST CURRENT CHESS.COM RATING
-========================================================= */
+/* HIGHEST CURRENT RATING */
 function getHighestRating(stats){
 
   const ratingPools = [
@@ -1754,14 +2404,13 @@ function getHighestRating(stats){
 
     {
       key:"chess960_daily",
-      label:"Chess960"
+      label:"960"
     }
 
   ];
 
-
-  let highest = null;
-
+  let highest =
+    null;
 
   for(
     const pool
@@ -1769,25 +2418,25 @@ function getHighestRating(stats){
   ){
 
     const rating =
-      stats?.[pool.key]?.last?.rating;
-
+      stats?.[pool.key]
+        ?.last
+        ?.rating;
 
     if(
-      typeof rating === "number" &&
+      typeof rating ===
+        "number" &&
       Number.isFinite(rating)
     ){
 
       if(
         !highest ||
-        rating > highest.rating
+        rating >
+        highest.rating
       ){
 
         highest = {
-
           rating,
-
           label:pool.label
-
         };
 
       }
@@ -1796,15 +2445,12 @@ function getHighestRating(stats){
 
   }
 
-
   return highest;
 
 }
 
 
-/* =========================================================
-   CLUB MEMBERS + HIGHEST CURRENT RATING
-========================================================= */
+/* MEMBERS */
 async function loadMembers(){
 
   try{
@@ -1813,7 +2459,6 @@ async function loadMembers(){
       await getJSON(
         `${API}/club/${CLUB}/members`
       );
-
 
     const allMembers = [
 
@@ -1825,10 +2470,8 @@ async function loadMembers(){
 
     ];
 
-
     const seen =
       new Set();
-
 
     const uniqueMembers =
       allMembers.filter(
@@ -1837,18 +2480,14 @@ async function loadMembers(){
           const username =
             member?.username;
 
-          if(
-            !username
-          ){
+          if(!username){
 
             return false;
 
           }
 
-
           const normalized =
             username.toLowerCase();
-
 
           if(
             seen.has(normalized)
@@ -1858,7 +2497,6 @@ async function loadMembers(){
 
           }
 
-
           seen.add(normalized);
 
           return true;
@@ -1866,15 +2504,12 @@ async function loadMembers(){
         }
       );
 
-
     $("#newestCount").textContent =
       uniqueMembers.length
         .toLocaleString();
 
-
     const displayedMembers =
       uniqueMembers.slice(0,6);
-
 
     const memberData =
       await Promise.all(
@@ -1885,7 +2520,6 @@ async function loadMembers(){
 
             const username =
               member.username;
-
 
             const [
               profile,
@@ -1909,13 +2543,14 @@ async function loadMembers(){
 
               ]);
 
-
             return {
 
               profile,
 
               highest:
-                getHighestRating(stats)
+                getHighestRating(
+                  stats
+                )
 
             };
 
@@ -1925,8 +2560,9 @@ async function loadMembers(){
 
       );
 
-
-    if(!memberData.length){
+    if(
+      !memberData.length
+    ){
 
       $("#newMembers").innerHTML =
         `
@@ -1941,7 +2577,6 @@ async function loadMembers(){
 
     }
 
-
     $("#newMembers").innerHTML =
       memberData.map(
         member => {
@@ -1949,14 +2584,11 @@ async function loadMembers(){
           const player =
             member.profile;
 
-
           const username =
             player.username || "";
 
-
           const rating =
             member.highest;
-
 
           const ratingValue =
             rating
@@ -1965,12 +2597,10 @@ async function loadMembers(){
                 ).toLocaleString()
               : "—";
 
-
           const ratingPool =
             rating
               ? rating.label
               : "Unrated";
-
 
           return `
           <a
@@ -2025,7 +2655,6 @@ async function loadMembers(){
     $("#newestCount").textContent =
       "—";
 
-
     $("#newMembers").innerHTML =
       `
       <div class="item">
@@ -2042,9 +2671,7 @@ async function loadMembers(){
 }
 
 
-/* =========================================================
-   LEADERSHIP
-========================================================= */
+/* LEADERSHIP */
 async function loadLeadership(){
 
   const leaders = [
@@ -2052,7 +2679,6 @@ async function loadLeadership(){
     {
       username:
         "lokesh-gamer-18",
-
       role:
         "Owner"
     },
@@ -2060,13 +2686,11 @@ async function loadLeadership(){
     {
       username:
         "jared",
-
       role:
         "Co-Owner"
     }
 
   ];
-
 
   const profiles =
     await Promise.all(
@@ -2097,7 +2721,6 @@ async function loadLeadership(){
       )
 
     );
-
 
   $("#leadership").innerHTML =
     profiles.map(
@@ -2151,9 +2774,7 @@ async function loadLeadership(){
 }
 
 
-/* =========================================================
-   LOAD DAILY CLUB MATCHES
-========================================================= */
+/* MATCHES */
 async function loadMatches(){
 
   try{
@@ -2162,7 +2783,6 @@ async function loadMatches(){
       await getJSON(
         `${API}/club/${CLUB}/matches`
       );
-
 
     resolveNextMCA(data)
       .catch(
@@ -2184,14 +2804,13 @@ async function loadMatches(){
         }
       );
 
-
     const registered =
-      data.registered || [];
-
+      data.registered ||
+      [];
 
     const inProgress =
-      data.in_progress || [];
-
+      data.in_progress ||
+      [];
 
     const activeMatches = [
 
@@ -2201,12 +2820,12 @@ async function loadMatches(){
 
     ];
 
-
     $("#dailyCount").textContent =
       activeMatches.length;
 
-
-    if(!activeMatches.length){
+    if(
+      !activeMatches.length
+    ){
 
       $("#dailyMatches").innerHTML =
         `
@@ -2223,7 +2842,6 @@ async function loadMatches(){
 
     }
 
-
     $("#dailyMatches").innerHTML =
       activeMatches
         .slice(0,12)
@@ -2231,7 +2849,9 @@ async function loadMatches(){
           match => {
 
             const status =
-              inProgress.includes(match)
+              inProgress.includes(
+                match
+              )
                 ? "In progress"
                 : "Registration open";
 
@@ -2242,9 +2862,18 @@ async function loadMatches(){
               target="_blank"
             >
 
-              <div>
+              <div style="
+                flex:1 1 auto;
+                min-width:0;
+                overflow:hidden;
+              ">
 
-                <b>
+                <b style="
+                  display:block;
+                  white-space:nowrap;
+                  overflow:hidden;
+                  text-overflow:ellipsis;
+                ">
                   ${safeText(
                     match.name ||
                     "Daily Match"
@@ -2293,15 +2922,14 @@ async function loadMatches(){
 }
 
 
-/* =========================================================
-   MCA COUNTDOWN
-========================================================= */
-let mcaStartTime = null;
+/* MCA */
+let mcaStartTime =
+  null;
 
-let mcaEvent = null;
+let mcaEvent =
+  null;
 
 
-/* CONVERT CHESS.COM TIMESTAMP */
 function unixToDate(value){
 
   if(
@@ -2314,24 +2942,21 @@ function unixToDate(value){
 
   }
 
-
   if(
-    typeof value === "number"
+    typeof value ===
+    "number"
   ){
 
     return new Date(
 
       value <
       1000000000000
-
         ? value * 1000
-
         : value
 
     );
 
   }
-
 
   if(
     /^\d+$/.test(
@@ -2346,32 +2971,25 @@ function unixToDate(value){
 
       number <
       1000000000000
-
         ? number * 1000
-
         : number
 
     );
 
   }
 
-
   const date =
     new Date(value);
-
 
   return isNaN(
     date.getTime()
   )
-
     ? null
-
     : date;
 
 }
 
 
-/* CREATE CHESS.COM MATCH URL */
 function matchWebUrl(match){
 
   if(
@@ -2385,10 +3003,9 @@ function matchWebUrl(match){
 
   }
 
-
   const apiUrl =
-    match?.["@id"] || "";
-
+    match?.["@id"] ||
+    "";
 
   const matchId =
     apiUrl
@@ -2396,7 +3013,6 @@ function matchWebUrl(match){
         /\/match\/(?:live\/)?(\d+)/i
       )
       ?.[1];
-
 
   if(matchId){
 
@@ -2407,7 +3023,6 @@ function matchWebUrl(match){
 
   }
 
-
   return (
     "https://www.chess.com/clubs/events/the-nexus-void"
   );
@@ -2415,7 +3030,6 @@ function matchWebUrl(match){
 }
 
 
-/* FIND NEXT MCA MATCH */
 async function resolveNextMCA(
   clubMatches
 ){
@@ -2427,29 +3041,30 @@ async function resolveNextMCA(
     ...(clubMatches.in_progress || [])
 
   ]
-
   .filter(
     match =>
       /\bMCA\b/i.test(
-        match.name || ""
+        match.name ||
+        ""
       )
   );
 
-
-  const detailedMatches = [];
-
+  const detailedMatches =
+    [];
 
   for(
-    const match of candidates
+    const match
+    of candidates
   ){
 
     let fullMatch =
       match;
 
-
     try{
 
-      if(match["@id"]){
+      if(
+        match["@id"]
+      ){
 
         const details =
           await getJSON(
@@ -2464,18 +3079,12 @@ async function resolveNextMCA(
       }
 
     }
-    catch(error){
-
-      /* Use original match data */
-
-    }
-
+    catch(error){}
 
     const start =
       unixToDate(
         fullMatch.start_time
       );
-
 
     if(start){
 
@@ -2491,35 +3100,32 @@ async function resolveNextMCA(
 
   }
 
-
   const now =
     Date.now();
 
-
   const upcoming =
     detailedMatches
-
       .filter(
         match =>
-          match._start.getTime() >
+          match._start
+            .getTime() >
           now
       )
-
       .sort(
         (a,b) =>
           a._start -
           b._start
       );
 
-
-  if(upcoming.length){
+  if(
+    upcoming.length
+  ){
 
     mcaEvent =
       upcoming[0];
 
     mcaStartTime =
       mcaEvent._start;
-
 
     $("#mcaStatus").innerHTML =
       `
@@ -2538,7 +3144,6 @@ async function resolveNextMCA(
       </span>
       `;
 
-
     $("#mcaMeta").innerHTML =
       `
       <a
@@ -2549,29 +3154,25 @@ async function resolveNextMCA(
       </a>
       `;
 
-
     tickCountdown();
 
     return;
 
   }
 
-
   const active =
     detailedMatches
-
       .filter(
         match =>
-          match._start.getTime() <=
+          match._start
+            .getTime() <=
           now
       )
-
       .sort(
         (a,b) =>
           b._start -
           a._start
       )[0];
-
 
   if(active){
 
@@ -2580,7 +3181,6 @@ async function resolveNextMCA(
 
     mcaStartTime =
       null;
-
 
     $("#mcaStatus").innerHTML =
       `
@@ -2598,7 +3198,6 @@ async function resolveNextMCA(
       </span>
       `;
 
-
     $("#mcaMeta").innerHTML =
       `
       <a
@@ -2608,7 +3207,6 @@ async function resolveNextMCA(
         Open MCA event ↗
       </a>
       `;
-
 
     setCountdownValues(
       "00",
@@ -2621,14 +3219,11 @@ async function resolveNextMCA(
 
   }
 
-
   mcaStartTime =
     null;
 
-
   $("#mcaStatus").textContent =
     "No upcoming MCA event is currently exposed in the club match data.";
-
 
   $("#mcaMeta").innerHTML =
     `
@@ -2640,7 +3235,6 @@ async function resolveNextMCA(
     </a>
     `;
 
-
   setCountdownValues(
     "—",
     "—",
@@ -2651,7 +3245,6 @@ async function resolveNextMCA(
 }
 
 
-/* UPDATE COUNTDOWN VALUES */
 function setCountdownValues(
   days,
   hours,
@@ -2674,22 +3267,23 @@ function setCountdownValues(
 }
 
 
-/* COUNTDOWN TIMER */
 function tickCountdown(){
 
-  if(!mcaStartTime){
+  if(
+    !mcaStartTime
+  ){
 
     return;
 
   }
 
-
   let difference =
     mcaStartTime.getTime() -
     Date.now();
 
-
-  if(difference <= 0){
+  if(
+    difference <= 0
+  ){
 
     setCountdownValues(
       "00",
@@ -2697,7 +3291,6 @@ function tickCountdown(){
       "00",
       "00"
     );
-
 
     $("#mcaStatus").innerHTML =
       `
@@ -2719,17 +3312,14 @@ function tickCountdown(){
 
   }
 
-
   const days =
     Math.floor(
       difference /
       86400000
     );
 
-
   difference %=
     86400000;
-
 
   const hours =
     Math.floor(
@@ -2737,10 +3327,8 @@ function tickCountdown(){
       3600000
     );
 
-
   difference %=
     3600000;
-
 
   const minutes =
     Math.floor(
@@ -2748,10 +3336,8 @@ function tickCountdown(){
       60000
     );
 
-
   difference %=
     60000;
-
 
   const seconds =
     Math.floor(
@@ -2759,19 +3345,27 @@ function tickCountdown(){
       1000
     );
 
-
   setCountdownValues(
 
     days,
 
     String(hours)
-      .padStart(2,"0"),
+      .padStart(
+        2,
+        "0"
+      ),
 
     String(minutes)
-      .padStart(2,"0"),
+      .padStart(
+        2,
+        "0"
+      ),
 
     String(seconds)
-      .padStart(2,"0")
+      .padStart(
+        2,
+        "0"
+      )
 
   );
 
@@ -2784,16 +3378,17 @@ setInterval(
 );
 
 
-/* =========================================================
-   BLACK HOLE PARTICLES
-========================================================= */
+/* VOID PARTICLES */
 const canvas =
   $("#voidCanvas");
 
 const ctx =
-  canvas.getContext("2d");
+  canvas.getContext(
+    "2d"
+  );
 
-let particles = [];
+let particles =
+  [];
 
 
 function resizeCanvas(){
@@ -2802,24 +3397,21 @@ function resizeCanvas(){
     window.devicePixelRatio ||
     1;
 
-
   canvas.width =
     innerWidth *
     ratio;
-
 
   canvas.height =
     innerHeight *
     ratio;
 
-
   canvas.style.width =
-    innerWidth + "px";
-
+    innerWidth +
+    "px";
 
   canvas.style.height =
-    innerHeight + "px";
-
+    innerHeight +
+    "px";
 
   ctx.setTransform(
     ratio,
@@ -2837,7 +3429,6 @@ window.addEventListener(
   "resize",
   resizeCanvas
 );
-
 
 resizeCanvas();
 
@@ -2873,7 +3464,6 @@ for(
 }
 
 
-/* RESET PARTICLE */
 function resetParticle(
   particle
 ){
@@ -2884,8 +3474,9 @@ function resetParticle(
       4
     );
 
-
-  if(edge === 0){
+  if(
+    edge === 0
+  ){
 
     particle.x =
       Math.random() *
@@ -2895,24 +3486,30 @@ function resetParticle(
       -20;
 
   }
-  else if(edge === 1){
+  else if(
+    edge === 1
+  ){
 
     particle.x =
-      innerWidth + 20;
+      innerWidth +
+      20;
 
     particle.y =
       Math.random() *
       innerHeight;
 
   }
-  else if(edge === 2){
+  else if(
+    edge === 2
+  ){
 
     particle.x =
       Math.random() *
       innerWidth;
 
     particle.y =
-      innerHeight + 20;
+      innerHeight +
+      20;
 
   }
   else{
@@ -2929,7 +3526,6 @@ function resetParticle(
 }
 
 
-/* ANIMATE VOID */
 function animateVoid(){
 
   ctx.clearRect(
@@ -2939,16 +3535,13 @@ function animateVoid(){
     innerHeight
   );
 
-
   const centerX =
     innerWidth *
     .5;
 
-
   const centerY =
     innerHeight *
     .42;
-
 
   for(
     const particle
@@ -2958,16 +3551,13 @@ function animateVoid(){
     particle.phase +=
       .012;
 
-
     const dx =
       centerX -
       particle.x;
 
-
     const dy =
       centerY -
       particle.y;
-
 
     const distance =
       Math.max(
@@ -2978,7 +3568,6 @@ function animateVoid(){
         )
       );
 
-
     const gravity =
       Math.min(
         .46,
@@ -2986,16 +3575,13 @@ function animateVoid(){
         distance
       );
 
-
     const tangentX =
       -dy /
       distance;
 
-
     const tangentY =
       dx /
       distance;
-
 
     particle.x +=
       dx *
@@ -3004,7 +3590,6 @@ function animateVoid(){
       tangentX *
       .16;
 
-
     particle.y +=
       dy *
       gravity *
@@ -3012,8 +3597,9 @@ function animateVoid(){
       tangentY *
       .16;
 
-
-    if(distance < 78){
+    if(
+      distance < 78
+    ){
 
       resetParticle(
         particle
@@ -3023,12 +3609,10 @@ function animateVoid(){
 
     }
 
-
     const violet =
       Math.sin(
         particle.phase
       ) > .05;
-
 
     ctx.fillStyle =
       violet
@@ -3037,29 +3621,19 @@ function animateVoid(){
 
         : "rgba(255,132,36,.42)";
 
-
     ctx.beginPath();
 
-
     ctx.arc(
-
       particle.x,
-
       particle.y,
-
       particle.r,
-
       0,
-
       Math.PI * 2
-
     );
-
 
     ctx.fill();
 
   }
-
 
   requestAnimationFrame(
     animateVoid
@@ -3071,16 +3645,12 @@ function animateVoid(){
 animateVoid();
 
 
-/* =========================================================
-   INITIAL LOAD
-========================================================= */
-
+/* INITIAL LOAD */
 loadMembers();
 
 loadLeadership();
 
 loadMatches();
-
 </script>
 
 </body>
