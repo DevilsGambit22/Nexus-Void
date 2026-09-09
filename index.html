@@ -15,7 +15,7 @@
 <style>
 
 /* =========================================================
-   NEXUS VOID — TRUE SIDEBAR BUILD
+   NEXUS VOID — TRUE SIDEBAR
 ========================================================= */
 
 :root{
@@ -51,21 +51,18 @@
   min-width:0;
 }
 
-html{
+html,
+body{
   width:100%;
   margin:0;
   padding:0;
 
   background:#050308;
 
-  overflow-x:hidden;
+  overflow:hidden;
 }
 
 body{
-  width:100%;
-  margin:0;
-  padding:0;
-
   font-family:
     Inter,
     ui-sans-serif,
@@ -76,10 +73,6 @@ body{
     sans-serif;
 
   color:var(--text);
-
-  background:#050308;
-
-  overflow-x:hidden;
 }
 
 a{
@@ -89,7 +82,7 @@ a{
 
 
 /* =========================================================
-   SIDEBAR SHELL
+   TRUE SIDEBAR SHELL
 ========================================================= */
 
 .sidebar-shell{
@@ -108,24 +101,25 @@ a{
   scrollbar-width:thin;
 
   scrollbar-color:
-    rgba(181,83,255,.82)
-    rgba(8,5,14,.35);
+    rgba(181,83,255,.88)
+    rgba(8,5,14,.42);
 
   background:
+
     radial-gradient(
       circle at 55% 16%,
-      rgba(143,60,255,.17),
-      transparent 26%
+      rgba(143,60,255,.18),
+      transparent 27%
     ),
 
     radial-gradient(
-      circle at 20% 54%,
+      circle at 18% 50%,
       rgba(255,122,24,.08),
-      transparent 22%
+      transparent 24%
     ),
 
     radial-gradient(
-      circle at 70% 72%,
+      circle at 72% 73%,
       rgba(143,60,255,.11),
       transparent 30%
     ),
@@ -139,7 +133,7 @@ a{
 }
 
 
-/* CHROME / EDGE SCROLLBAR */
+/* THIN SCROLLBAR ATTACHED TO SIDEBAR */
 
 .sidebar-shell::-webkit-scrollbar{
   width:5px;
@@ -147,7 +141,7 @@ a{
 
 .sidebar-shell::-webkit-scrollbar-track{
   background:
-    rgba(4,2,8,.45);
+    rgba(4,2,8,.48);
 }
 
 .sidebar-shell::-webkit-scrollbar-thumb{
@@ -173,19 +167,21 @@ a{
 
 
 /* =========================================================
-   BACKGROUND EFFECTS
+   VOID BACKGROUND
 ========================================================= */
 
 .sidebar-shell::before{
   content:"";
 
-  position:fixed;
+  position:absolute;
+
+  z-index:0;
 
   left:50%;
-  top:42%;
+  top:28%;
 
-  width:500px;
-  height:180px;
+  width:470px;
+  height:170px;
 
   transform:
     translate(-50%,-50%)
@@ -221,9 +217,11 @@ a{
 .sidebar-shell::after{
   content:"";
 
-  position:fixed;
+  position:absolute;
 
   inset:0;
+
+  z-index:0;
 
   pointer-events:none;
 
@@ -231,8 +229,8 @@ a{
     radial-gradient(
       ellipse at center,
       transparent 28%,
-      rgba(0,0,0,.22) 65%,
-      rgba(0,0,0,.72) 100%
+      rgba(0,0,0,.18) 67%,
+      rgba(0,0,0,.58) 100%
     );
 }
 
@@ -241,28 +239,24 @@ a{
 
   inset:0;
 
-  width:100%;
-  height:100%;
-
   z-index:0;
 
   pointer-events:none;
 
-  opacity:.60;
+  opacity:.58;
 }
 
 
 /* =========================================================
-   INNER WRAPPER
+   WRAPPER
 ========================================================= */
 
 .wrap{
   position:relative;
+
   z-index:2;
 
   width:100%;
-
-  margin:0;
 
   padding:
     8px
@@ -276,19 +270,17 @@ a{
 ========================================================= */
 
 .topbar{
-  width:100%;
-
-  display:flex;
-
-  align-items:center;
-
-  gap:8px;
-
   position:sticky;
 
   top:5px;
 
   z-index:20;
+
+  width:100%;
+
+  display:flex;
+
+  align-items:center;
 
   padding:
     9px
@@ -300,7 +292,7 @@ a{
   border-radius:15px;
 
   background:
-    rgba(8,5,14,.88);
+    rgba(8,5,14,.90);
 
   backdrop-filter:blur(13px);
 
@@ -416,6 +408,7 @@ a{
   border-radius:19px;
 
   background:
+
     linear-gradient(
       135deg,
       rgba(255,122,24,.06),
@@ -461,8 +454,6 @@ a{
   position:relative;
 
   z-index:2;
-
-  text-align:left;
 }
 
 .eyebrow{
@@ -496,8 +487,6 @@ a{
   letter-spacing:.08em;
 
   text-transform:uppercase;
-
-  overflow:hidden;
 }
 
 .live-dot{
@@ -566,6 +555,9 @@ a{
   line-height:1.55;
 }
 
+
+/* HERO BUTTONS */
+
 .hero-actions{
   width:100%;
 
@@ -616,11 +608,15 @@ a{
 
   background:
     rgba(143,60,255,.12);
+
+  box-shadow:
+    0 7px 18px
+    rgba(143,60,255,.18);
 }
 
 
 /* =========================================================
-   VOID LOGO
+   UPLOADED NEXUS VOID HERO GIF
 ========================================================= */
 
 .ring-stage{
@@ -630,158 +626,82 @@ a{
 
   width:100%;
 
-  height:178px;
+  height:180px;
 
-  margin-top:5px;
-
-  display:grid;
-
-  place-items:center;
-
-  overflow:hidden;
-}
-
-.void-ring{
-  position:relative;
-
-  width:145px;
-
-  aspect-ratio:1;
-
-  padding:10px;
-
-  border-radius:50%;
-
-  background:
-    conic-gradient(
-      from 210deg,
-      #ff6517,
-      #ff9d24 32%,
-      #5d1bd4 58%,
-      #b152ff 82%,
-      #ff6517
-    );
-
-  filter:
-    drop-shadow(
-      0 0 18px
-      rgba(154,61,255,.45)
-    );
-
-  animation:
-    spin
-    12s
-    linear
-    infinite;
-}
-
-.void-ring::before{
-  content:"";
-
-  display:block;
-
-  width:100%;
-  height:100%;
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle,
-      #07050c 55%,
-      #0d0917 58%,
-      #050308 72%
-    );
-
-  box-shadow:
-    inset
-    0 0 24px
-    rgba(255,255,255,.08);
-}
-
-.ring-title{
-  position:absolute;
-
-  inset:0;
+  margin-top:6px;
 
   display:flex;
-
-  flex-direction:column;
 
   align-items:center;
 
   justify-content:center;
 
-  pointer-events:none;
-
-  text-align:center;
-
-  animation:
-    counterSpin
-    12s
-    linear
-    infinite;
+  overflow:visible;
 }
 
-.ring-title span{
-  font-size:9px;
+.hero-gif{
+  display:block;
 
-  font-weight:900;
+  width:150px;
+  height:150px;
 
-  letter-spacing:.24em;
+  max-width:70%;
 
-  margin-right:-.24em;
-
-  color:#eee7ff;
-}
-
-.ring-title strong{
-  font-size:22px;
-
-  line-height:1.05;
-
-  font-weight:1000;
-
-  letter-spacing:.06em;
-
-  background:
-    linear-gradient(
-      90deg,
-      #ff9b29,
-      #fff 46%,
-      #c56cff
-    );
-
-  -webkit-background-clip:text;
-
-  background-clip:text;
-
-  color:transparent;
-}
-
-.orb{
-  position:absolute;
-
-  width:6px;
-  height:6px;
+  object-fit:contain;
 
   border-radius:50%;
 
-  background:#fff;
+  filter:
+    drop-shadow(
+      0 0 10px
+      rgba(255,122,24,.35)
+    )
 
-  box-shadow:
-    0 0 12px #fff;
+    drop-shadow(
+      0 0 20px
+      rgba(143,60,255,.45)
+    )
+
+    drop-shadow(
+      0 0 32px
+      rgba(143,60,255,.20)
+    );
+
+  transition:
+    transform .25s ease,
+    filter .25s ease;
 
   animation:
-    orbit
-    5s
-    linear
+    nexusFloat
+    4s
+    ease-in-out
     infinite;
+}
+
+.hero-gif:hover{
+  transform:
+    scale(1.07);
+
+  filter:
+    drop-shadow(
+      0 0 14px
+      rgba(255,122,24,.55)
+    )
+
+    drop-shadow(
+      0 0 28px
+      rgba(143,60,255,.70)
+    )
+
+    drop-shadow(
+      0 0 42px
+      rgba(143,60,255,.30)
+    );
 }
 
 
 /* =========================================================
-   STATS — STACKED SIDEBAR
+   STATS
 ========================================================= */
 
 .stats{
@@ -829,6 +749,10 @@ a{
 
   border-color:
     rgba(181,85,255,.36);
+
+  box-shadow:
+    0 7px 18px
+    rgba(143,60,255,.13);
 }
 
 .stat b{
@@ -892,11 +816,6 @@ a{
   margin-top:9px;
 }
 
-.grid2,
-.grid3{
-  grid-template-columns:1fr;
-}
-
 
 /* =========================================================
    CARDS
@@ -939,6 +858,10 @@ a{
 
   border-color:
     rgba(181,85,255,.38);
+
+  box-shadow:
+    0 14px 35px
+    rgba(77,18,127,.22);
 }
 
 .card::after{
@@ -947,9 +870,7 @@ a{
   position:absolute;
 
   left:35%;
-
   right:-20%;
-
   bottom:-80px;
 
   height:130px;
@@ -1063,7 +984,7 @@ a{
 
 
 /* =========================================================
-   MEMBER / LEADERSHIP LISTS
+   MEMBER / LEADERSHIP LIST
 ========================================================= */
 
 .list{
@@ -1088,7 +1009,6 @@ a{
   gap:8px;
 
   padding:
-    8px
     8px;
 
   overflow:hidden;
@@ -1106,6 +1026,9 @@ a{
 }
 
 .item:hover{
+  transform:
+    translateY(-1px);
+
   background:
     rgba(255,255,255,.06);
 
@@ -1179,9 +1102,7 @@ a{
 }
 
 
-/* IMPORTANT:
-   RATING / ROLE NOW APPEARS UNDER USERNAME
-*/
+/* RATING / ROLE DIRECTLY UNDER USERNAME */
 
 .user-meta{
   display:block;
@@ -1205,7 +1126,7 @@ a{
   text-overflow:ellipsis;
 }
 
-.user-meta strong{
+.rating-meta{
   color:#ffb45f;
 
   font-weight:900;
@@ -1257,8 +1178,6 @@ a{
   font-size:10px;
 
   font-weight:900;
-
-  text-align:left;
 
   transition:.18s ease;
 }
@@ -1404,48 +1323,42 @@ a{
 ========================================================= */
 
 @keyframes spin{
+
   to{
     transform:
       rotate(360deg);
   }
+
 }
 
-@keyframes counterSpin{
-  to{
-    transform:
-      rotate(-360deg);
-  }
-}
 
 @keyframes voidDrift{
+
   to{
     transform:
       translate(-50%,-50%)
       rotate(349deg);
   }
+
 }
 
-@keyframes orbit{
 
-  from{
-    transform:
-      rotate(0deg)
-      translateX(79px)
-      rotate(0deg);
+@keyframes nexusFloat{
+
+  0%,
+  100%{
+    translate:0 0;
   }
 
-  to{
-    transform:
-      rotate(360deg)
-      translateX(79px)
-      rotate(-360deg);
+  50%{
+    translate:0 -6px;
   }
 
 }
 
 
 /* =========================================================
-   VERY NARROW EMBEDS
+   EXTRA NARROW
 ========================================================= */
 
 @media(max-width:330px){
@@ -1469,11 +1382,12 @@ a{
   }
 
   .ring-stage{
-    height:160px;
+    height:165px;
   }
 
-  .void-ring{
-    width:132px;
+  .hero-gif{
+    width:138px;
+    height:138px;
   }
 
   .countdown{
@@ -1502,12 +1416,11 @@ a{
 
 <canvas id="voidCanvas"></canvas>
 
+
 <div class="wrap">
 
 
-  <!-- =====================================================
-       TOP BAR
-  ====================================================== -->
+  <!-- TOP BAR -->
 
   <div class="topbar">
 
@@ -1524,9 +1437,7 @@ a{
   </div>
 
 
-  <!-- =====================================================
-       HERO
-  ====================================================== -->
+  <!-- HERO -->
 
   <section class="hero">
 
@@ -1569,6 +1480,7 @@ a{
           Open Club
         </a>
 
+
         <a
           class="btn"
           href="https://www.chess.com/clubs/forum/the-nexus-void"
@@ -1576,6 +1488,7 @@ a{
         >
           Important Forums
         </a>
+
 
         <a
           class="btn"
@@ -1590,38 +1503,22 @@ a{
     </div>
 
 
+    <!-- UPLOADED NEXUS VOID GIF -->
+
     <div class="ring-stage">
 
-      <div class="void-ring">
-
-        <div class="ring-title">
-
-          <span>
-            THE
-          </span>
-
-          <strong>
-            NEXUS
-          </strong>
-
-          <span>
-            VOID
-          </span>
-
-        </div>
-
-      </div>
-
-      <div class="orb"></div>
+      <img
+        class="hero-gif"
+        src="assets/nexus-void.gif"
+        alt="The Nexus Void"
+      >
 
     </div>
 
   </section>
 
 
-  <!-- =====================================================
-       STATS
-  ====================================================== -->
+  <!-- STATS -->
 
   <section class="stats">
 
@@ -1673,9 +1570,7 @@ a{
   </section>
 
 
-  <!-- =====================================================
-       COMPETITION CENTER
-  ====================================================== -->
+  <!-- COMPETITION CENTER -->
 
   <section class="section">
 
@@ -1762,9 +1657,7 @@ a{
   </section>
 
 
-  <!-- =====================================================
-       LEADERSHIP
-  ====================================================== -->
+  <!-- LEADERSHIP -->
 
   <section class="section">
 
@@ -1795,9 +1688,7 @@ a{
   </section>
 
 
-  <!-- =====================================================
-       NEWEST MEMBERS
-  ====================================================== -->
+  <!-- NEWEST MEMBERS -->
 
   <section class="section">
 
@@ -1828,9 +1719,7 @@ a{
   </section>
 
 
-  <!-- =====================================================
-       IMPORTANT LINKS
-  ====================================================== -->
+  <!-- IMPORTANT LINKS -->
 
   <section class="section">
 
@@ -1876,9 +1765,7 @@ a{
   </section>
 
 
-  <!-- =====================================================
-       DAILY MATCHES
-  ====================================================== -->
+  <!-- DAILY MATCHES -->
 
   <section class="section">
 
@@ -1909,9 +1796,7 @@ a{
   </section>
 
 
-  <!-- =====================================================
-       FOOTER
-  ====================================================== -->
+  <!-- FOOTER -->
 
   <footer class="footer">
 
@@ -2018,7 +1903,7 @@ async function getJSON(url){
 
 
 /* =========================================================
-   LOCAL BROWSER CLOCK
+   BROWSER CLOCK
 ========================================================= */
 
 function updateLocalClock(){
@@ -2089,7 +1974,7 @@ function avatarFor(player){
 
 
 /* =========================================================
-   HIGHEST CURRENT CHESS.COM RATING
+   HIGHEST CURRENT ELO
 ========================================================= */
 
 function getHighestRating(stats){
@@ -2216,14 +2101,11 @@ async function loadMembers(){
 
 
           const normalized =
-            username
-              .toLowerCase();
+            username.toLowerCase();
 
 
           if(
-            seen.has(
-              normalized
-            )
+            seen.has(normalized)
           ){
 
             return false;
@@ -2231,9 +2113,7 @@ async function loadMembers(){
           }
 
 
-          seen.add(
-            normalized
-          );
+          seen.add(normalized);
 
 
           return true;
@@ -2248,11 +2128,10 @@ async function loadMembers(){
 
 
     const displayed =
-      uniqueMembers
-        .slice(
-          0,
-          6
-        );
+      uniqueMembers.slice(
+        0,
+        6
+      );
 
 
     const memberData =
@@ -2380,12 +2259,10 @@ async function loadMembers(){
                   ${safeText(username)}
                 </b>
 
-                <span class="user-meta">
-
-                  <strong>
-                    ${safeText(ratingText)}
-                  </strong>
-
+                <span
+                  class="user-meta rating-meta"
+                >
+                  ${safeText(ratingText)}
                 </span>
 
               </div>
@@ -2556,6 +2433,7 @@ async function loadMatches(){
           $("#mcaStatus").textContent =
             "MCA timing unavailable.";
 
+
           $("#mcaMeta").innerHTML =
             `
             <a
@@ -2703,8 +2581,6 @@ let mcaEvent =
   null;
 
 
-/* TIMESTAMP */
-
 function unixToDate(value){
 
   if(
@@ -2816,7 +2692,7 @@ function matchWebUrl(match){
 }
 
 
-/* FIND MCA */
+/* FIND NEXT MCA */
 
 async function resolveNextMCA(
   clubMatches
@@ -3085,7 +2961,7 @@ function setCountdownValues(
 }
 
 
-/* TICK */
+/* COUNTDOWN */
 
 function tickCountdown(){
 
@@ -3321,8 +3197,6 @@ for(
 }
 
 
-/* RESET PARTICLE */
-
 function resetParticle(
   particle
 ){
@@ -3333,16 +3207,12 @@ function resetParticle(
 
 
   particle.y =
-    Math.random() >
-    .5
+    Math.random() > .5
       ? -15
-      : innerHeight +
-        15;
+      : innerHeight + 15;
 
 }
 
-
-/* ANIMATE */
 
 function animateVoid(){
 
@@ -3442,8 +3312,7 @@ function animateVoid(){
 
 
     if(
-      distance <
-      60
+      distance < 60
     ){
 
       resetParticle(
